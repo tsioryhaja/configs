@@ -31,4 +31,10 @@ Then open neovim anywhere and install packages with packer
 :PackerInstall
 ```
 
+For typescript you need to install the language server.
+
+``` shell
+npm install -g typescript typescript-language-server@0.10.1
+```
+
 I actually use "Telescope" with ripgrep so you need to install "BurntSushi/ripgrep" and add it to you "path".
