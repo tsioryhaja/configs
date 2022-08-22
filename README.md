@@ -1,6 +1,7 @@
 # configs
 
 This is my development configuration file. It's mostly for Vim/Neovim.
+I actually use a custom mapping with "ijkl" for arrows alternative and not "hjkl" so use it at your own risk.
 I use it for Javascript/Typescript, Angular, Python, C/C++, GO and Godot Engine development.
 It is actually for a windows environment only, but I will add my linux environment later.
 
