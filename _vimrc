@@ -84,3 +84,5 @@ set guioptions-=m "menu bar"
 set guioptions-=T "toolbar"
 
 let g:godot_executable = 'C:/Godot/Godot.exe'
+
+imap <silent><expr> <Tab> pumvisible() ? "\<down>" : "\<Tab>"
