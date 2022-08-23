@@ -22,7 +22,8 @@ require("packer").startup(
 		use 'glepnir/lspsaga.nvim'
 		use 'lewis6991/gitsigns.nvim'
 		use 'habamax/vim-godot'
-		
+		use 'preservim/nerdtree'
+--		use 'noib3/nvim-cokeline'
 	end
 )
 

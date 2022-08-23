@@ -41,6 +41,7 @@ set pythonhome=C:\\Python27
 set pythondll=python27.dll
 let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
 autocmd vimenter * NERDTree
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
