@@ -24,6 +24,7 @@ require("packer").startup(
 		use 'habamax/vim-godot'
 		use 'preservim/nerdtree'
 --		use 'noib3/nvim-cokeline'
+		use 'mfussenegger/nvim-dap'
 	end
 )
 
