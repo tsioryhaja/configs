@@ -1,1 +1,1 @@
-vim.cmd"autocmd vimenter * NERDTree"
+--vim.cmd"autocmd vimenter * NERDTree"
