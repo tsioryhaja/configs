@@ -54,13 +54,29 @@ nvim_lsp.tsserver.setup {
 }
 
 nvim_lsp.gdscript.setup {
+	on_attach = on_attach,
 	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 nvim_lsp.gopls.setup {
+	on_attach = on_attach,
 	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
+nvim_lsp.pyright.setup {
+	on_attach = on_attach,
+	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
+
+nvim_lsp.clangd.setup {
+	on_attach=on_attach,
+	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
+
+nvim_lsp.cmake.setup {
+	on_attach=on_attach,
+	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
