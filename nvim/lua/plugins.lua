@@ -1,4 +1,3 @@
-local Plug = vim.fn['plug#']
 
 require("packer").startup(
 	function()
