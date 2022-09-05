@@ -41,6 +41,7 @@ telescope.setup {
 }
 
 telescope.load_extension("file_browser")
+telescope.load_extension("dap")
 
 vim.keymap.set('n', ';f',
 function()
@@ -66,6 +67,7 @@ vim.keymap.set('n', ';e', function()
 	builtin.diagnostics()
 end)
 vim.keymap.set('n', '<A-f>', '<Cmd>Telescope file_browser path=%:p:h<CR>')
+vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
 vim.keymap.set("n", "sf", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",

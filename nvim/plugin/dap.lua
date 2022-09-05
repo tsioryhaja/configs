@@ -13,9 +13,75 @@ dap.configurations.python = {
 		name = 'Debug Python';
 		request = 'launch';
 
-		program = '${file}';
+		program = function()
+			return vim.fn.input("file to launch: ") 
+		end,
 		pythonPath = function()
 			return 'python'
 		end
+	},
+	{
+		type = 'generic_remote',
+		name = 'Python remote debug',
+		request = 'attach',
+		connect = {
+			port = 5678,
+			host = "127.0.0.1",
+		},
+		mode = "remote",
+		cwd = vim.fn.getcwd(),
+		pathMappings = {
+			{
+				localRoot = function()
+					return vim.fn.input("Local code folder > ", vim.fn.getcwd(), "file")
+				end,
+				remoteRoot = function()
+					return vim.fn.input("Container code folder > ", "/", "file")
+				end
+			}
+		}
 	}
 }
+
+dap.adapters.firefox = {
+	type = 'executable',
+	command = 'node',
+	args = {'C:/vimdebugadapter/vscode-firefox-debug/dist/adapter.bundle.js'}
+}
+
+dap.configurations.typescript = {
+	{
+		name = 'Debug with firefox',
+		type = 'firefox',
+		request = 'launch',
+		reAttach = true,
+		url = 'http://localhost:4200',
+		webRoot = '${workspaceFolder}',
+		firefoxExecutable = 'C:/Program Files/Mozilla Firefox/firefox.exe',
+	}
+}
+
+vim.keymap.set('n', '<F5>', function()
+	require('dap').continue()
+end)
+
+vim.keymap.set('n', '<F9>', function()
+	require('dap').toggle_breakpoint()
+end)
+
+vim.keymap.set('n', 'so', function()
+	require('dap').step_over()
+end)
+
+vim.keymap.set('n', 'si', function()
+	require('dap').step_into()
+end)
+
+vim.keymap.set('n', 'ro', function()
+	require('dap').open()
+end)
+
+vim.keymap.set('n', ';duf', function()
+	widgets = require'dap.ui.widgets'
+	widgets.centered_float(widgets.scopes)
+end)

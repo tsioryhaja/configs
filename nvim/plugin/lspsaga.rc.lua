@@ -7,7 +7,7 @@ saga.init_lsp_saga {
 	}
 }
 
-vim.cmd'highlight Pmenu ctermbg=gray guibg=gray'
+vim.cmd'highlight Pmenu ctermbg=darkgray guibg=darkgray'
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
