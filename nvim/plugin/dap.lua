@@ -93,3 +93,6 @@ vim.keymap.set('n', ';duf', function()
 	widgets = require'dap.ui.widgets'
 	widgets.centered_float(widgets.scopes)
 end)
+
+vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointRejected', {text='', texthl='', linehl='', numhl=''})
