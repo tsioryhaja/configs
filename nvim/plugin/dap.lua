@@ -49,6 +49,12 @@ dap.adapters.firefox = {
 	args = {'C:/vimdebugadapter/vscode-firefox-debug/dist/adapter.bundle.js'}
 }
 
+dap.adapters.node2 = {
+	type = 'executable',
+	command = 'node',
+	args = {'C:/vimdebugadapter/vscode-node-debug2/out/src/nodeDebug.js'}
+}
+
 dap.configurations.typescript = {
 	{
 		name = 'Debug with firefox',
@@ -58,6 +64,21 @@ dap.configurations.typescript = {
 		url = 'http://localhost:4200',
 		webRoot = '${workspaceFolder}',
 		firefoxExecutable = 'C:/Program Files/Mozilla Firefox/firefox.exe',
+	},
+	{
+		name = 'Debug node js',
+		type = 'node2',
+		request = 'launch',
+		program = function()
+			return vim.fn.getcwd() .. "/out/debug_adapter.js"
+		end,
+		sourceMaps = true,
+		cwd = function()
+			return vim.fn.getcwd()
+		end,
+		outDir = function()
+			return vim.fn.getcwd() .. "/out"
+		end,
 	}
 }
 
