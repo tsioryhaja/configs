@@ -90,16 +90,24 @@ vim.keymap.set('n', '<F9>', function()
 	require('dap').toggle_breakpoint()
 end)
 
-vim.keymap.set('n', 'so', function()
+vim.keymap.set('n', 'dso', function()
 	require('dap').step_over()
 end)
 
-vim.keymap.set('n', 'si', function()
+vim.keymap.set('n', 'dsi', function()
 	require('dap').step_into()
 end)
 
-vim.keymap.set('n', 'ro', function()
-	require('dap').open()
+vim.keymap.set('n', 'dro', function()
+	require('dap').repl.open()
+end)
+
+vim.keymap.set('n', 'drc', function()
+	require('dap').repl.close()
+end)
+
+vim.keymap.set('n', ';dt', function()
+	require('dap').terminate()
 end)
 
 vim.keymap.set('n', ';duf', function()
