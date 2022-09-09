@@ -75,12 +75,27 @@ nvim_lsp.clangd.setup {
 
 nvim_lsp.cmake.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
 nvim_lsp.angularls.setup {
 	on_attach=on_attach,
 	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
+
+nvim_lsp.efm.setup {
+	on_attach=on_attach,
+	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	init_options = {documentFormatting=true},
+	filetypes = {"python"},
+	settings = {
+		rootMarkers = {".git/"},
+		languages={
+			python={
+				{formatCommand="black --quiet -", formatStdin=true}
+			}
+		}
+	}
 }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
