@@ -43,6 +43,13 @@ dap.configurations.python = {
 	}
 }
 
+dap.adapters.godot = {
+	type = 'executable',
+	command = 'node',
+	args = {'E:/data/nodeprojects/godot-dap-adapter/out/debug_adapter.js', vim.fn.getcwd()},
+	cwd = vim.fn.getcwd(),
+}
+
 dap.adapters.firefox = {
 	type = 'executable',
 	command = 'node',
@@ -53,6 +60,17 @@ dap.adapters.node2 = {
 	type = 'executable',
 	command = 'node',
 	args = {'C:/vimdebugadapter/vscode-node-debug2/out/src/nodeDebug.js'}
+}
+
+dap.configurations.gdscript = {
+	{
+		name = 'Debug file',
+		type = 'godot',
+		request = 'launch',
+		program = function()
+			return vim.fn.input("File :")
+		end
+	}
 }
 
 dap.configurations.typescript = {
