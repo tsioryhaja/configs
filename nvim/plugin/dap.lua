@@ -1,10 +1,44 @@
 local status, dap = pcall(require, 'dap')
 if (not status) then return end
 
+load_config = function()
+	file = io.open('.dap.json','r')
+	content = nil
+	if file then
+		c = file:read('*a')
+		content = vim.json.decode(c)
+	end
+	return content
+end
+
+get_config = function(name)
+	value = nil
+	config = load_config()
+	if config then
+		value = config[name]
+	end
+	return value
+end
+
+get_config_or_ask = function(name, asked)
+	value = get_config(name)
+	if value == nil then
+		value = vim.fn.input(asked)
+	end
+	return value
+end
+
 dap.adapters.python = {
 	type = 'executable';
 	command = 'python';
 	args = {'-m', 'debugpy.adapter'};
+}
+
+dap.adapters.python_remote = {
+	type = 'server',
+	host = '127.0.0.1',
+	port = 5678,
+	request = 'attach'
 }
 
 dap.configurations.python = {
@@ -14,14 +48,18 @@ dap.configurations.python = {
 		request = 'launch';
 
 		program = function()
-			return vim.fn.input("file to launch: ") 
+			program = get_config('program')
+			if program == nil then
+				program = vim.fn.input("file to launch: ")
+			end
+			return program
 		end,
 		pythonPath = function()
 			return 'python'
 		end
 	},
 	{
-		type = 'generic_remote',
+		type = 'python_remote',
 		name = 'Python remote debug',
 		request = 'attach',
 		connect = {
@@ -36,7 +74,7 @@ dap.configurations.python = {
 					return vim.fn.input("Local code folder > ", vim.fn.getcwd(), "file")
 				end,
 				remoteRoot = function()
-					return vim.fn.input("Container code folder > ", "/", "file")
+					return vim.fn.input("Container code folder > ", vim.fn.getcwd(), "file")
 				end
 			}
 		}
