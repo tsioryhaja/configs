@@ -17,7 +17,7 @@ require("packer").startup(
 		}
 		use 'nvim-telescope/telescope-file-browser.nvim'
 		use 'kyazdani42/nvim-web-devicons'
-		use 'akinsho/nvim-bufferline.lua'
+		use 'akinsho/bufferline.nvim'
 		use 'glepnir/lspsaga.nvim'
 		use 'lewis6991/gitsigns.nvim'
 		use 'habamax/vim-godot'
