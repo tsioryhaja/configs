@@ -7,6 +7,28 @@ local function telescope_buffer_dir()
 	return vim.fn.expand('%:p:h')
 end
 
+load_config = function()
+	file = io.open('.telescope.json','r')
+	content = nil
+	if file then
+		c = file:read('*a')
+		content = vim.json.decode(c)
+	end
+	return content
+end
+
+get_config = function(name)
+	value = nil
+	config = load_config()
+	if config then
+		value = config[name]
+	end
+	return value
+end
+
+local telescopeIgnore = get_config("ignore")
+if not telescopeIgnore then telescopeIgnore = {} end
+
 local fb_actions = require("telescope").extensions.file_browser.actions
 
 telescope.setup {
@@ -17,6 +39,7 @@ telescope.setup {
 
 			},
 		},
+		file_ignore_patterns = telescopeIgnore
 	},
 	extensions = {
 		file_browser = {
