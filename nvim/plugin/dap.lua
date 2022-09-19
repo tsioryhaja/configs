@@ -142,7 +142,15 @@ vim.keymap.set('n', '<F5>', function()
 	require('dap').continue()
 end)
 
+vim.keymap.set('n', ';ds', function()
+	require('dap').continue()
+end)
+
 vim.keymap.set('n', '<F9>', function()
+	require('dap').toggle_breakpoint()
+end)
+
+vim.keymap.set('n', ';db', function()
 	require('dap').toggle_breakpoint()
 end)
 

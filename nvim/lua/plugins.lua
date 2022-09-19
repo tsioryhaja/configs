@@ -25,6 +25,7 @@ require("packer").startup(
 --		use 'noib3/nvim-cokeline'
 		use 'mfussenegger/nvim-dap'
 		use 'nvim-telescope/telescope-dap.nvim'
+		use 'EdenEast/nightfox.nvim'
 	end
 )
 

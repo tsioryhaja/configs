@@ -20,7 +20,7 @@ cmp.setup(
 		end,
 		['<S-Tab>'] = function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_tiem()
+				cmp.select_prev_item()
 			else
 				fallback()
 			end
