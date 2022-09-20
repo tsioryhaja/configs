@@ -9,3 +9,5 @@ vim.keymap.set('v', 'i', '<Up>')
 vim.keymap.set('v', 'k', '<Down>')
 vim.keymap.set('v', 'j', '<left>')
 vim.keymap.set('v', 'l', '<Right>')
+
+vim.cmd(':vnoremap h i')
