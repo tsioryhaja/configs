@@ -18,6 +18,27 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 end
 
+load_config = function()
+	file = io.open('.lsp.json','r')
+	content = nil
+	if file then
+		c = file:read('*a')
+		content = vim.json.decode(c)
+	end
+	return content
+end
+
+get_config = function(name)
+	value = nil
+	config = load_config()
+	if config then
+		value = config[name]
+	end
+	return value
+end
+
+local python_version = get_config('python_version')
+
 protocol.CompletionItemKind = {
   '', -- Text
   '', -- Method
@@ -47,6 +68,31 @@ protocol.CompletionItemKind = {
 }
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local util = require 'lspconfig.util'
+local nvim_lsp_configs = require 'lspconfig.configs'
+
+nvim_lsp_configs['pyls'] = {
+	default_config = {
+		cmd = { 'pyls' },
+		filetypes = { 'python' },
+		root_dir = function(fname) 
+			local root_files = {
+			'pyproject.toml',
+			'setup.py',
+			'setup.cfg',
+			'requirements.txt',
+			'Pipfile',
+			}
+			return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+		end,
+		single_file_support = true,
+	},
+	docs = {
+		description = [[
+		let's try a python 2.7 lsp
+		]]
+	}
+}
 
 nvim_lsp.tsserver.setup {
 	on_attach = on_attach,
@@ -63,10 +109,17 @@ nvim_lsp.gopls.setup {
 	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
-nvim_lsp.pyright.setup {
-	on_attach = on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-}
+if python_version == '2.7' then
+	nvim_lsp.pyls.setup {
+		on_attach = on_attach,
+		capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	}
+else
+	nvim_lsp.pyright.setup {
+		on_attach = on_attach,
+		capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	}
+end
 
 nvim_lsp.clangd.setup {
 	on_attach=on_attach,
