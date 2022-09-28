@@ -27,6 +27,7 @@ require("packer").startup(
 		use 'nvim-telescope/telescope-dap.nvim'
 		use 'EdenEast/nightfox.nvim'
 		use 'windwp/nvim-autopairs'
+		use 'dinhhuy258/git.nvim'
 	end
 )
 
