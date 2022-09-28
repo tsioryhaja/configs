@@ -26,6 +26,7 @@ require("packer").startup(
 		use 'mfussenegger/nvim-dap'
 		use 'nvim-telescope/telescope-dap.nvim'
 		use 'EdenEast/nightfox.nvim'
+		use 'windwp/nvim-autopairs'
 	end
 )
 
