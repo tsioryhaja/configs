@@ -67,7 +67,7 @@ protocol.CompletionItemKind = {
   '', -- TypeParameter
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local util = require 'lspconfig.util'
 local nvim_lsp_configs = require 'lspconfig.configs'
 
@@ -101,44 +101,44 @@ nvim_lsp.tsserver.setup {
 
 nvim_lsp.gdscript.setup {
 	on_attach = on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 nvim_lsp.gopls.setup {
 	on_attach = on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 if python_version == '2.7' then
 	nvim_lsp.pyls.setup {
 		on_attach = on_attach,
-		capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities=require('cmp_nvim_lsp').default_capabilities(),
 	}
 else
 	nvim_lsp.pyright.setup {
 		on_attach = on_attach,
-		capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities=require('cmp_nvim_lsp').default_capabilities(),
 	}
 end
 
 nvim_lsp.clangd.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 nvim_lsp.cmake.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 nvim_lsp.angularls.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 nvim_lsp.efm.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 	init_options = {documentFormatting=true},
 	filetypes = {"python"},
 	settings = {
@@ -149,6 +149,27 @@ nvim_lsp.efm.setup {
 			}
 		}
 	}
+}
+
+nvim_lsp.sumneko_lua.setup {
+	settings = {
+		Lua = {
+			runtime = {
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				globals={'vim'},
+			},
+			workspace={
+				library=vim.api.nvim_get_runtime_file("", true),
+			},
+			telemetry={
+				enable=false,
+			},
+		}
+	},
+	on_attach=on_attach,
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
