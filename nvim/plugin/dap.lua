@@ -156,6 +156,49 @@ dap.configurations.typescript = {
 	}
 }
 
+dap.adapters.cppdbg = {
+	id='cppdbg',
+	type='executable',
+	command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+	options = {
+		detached = false
+	}
+}
+
+dap.adapters.lldb = {
+	type = 'executable',
+	command = 'lldb-vscode',
+	name = 'lldb',
+	env = {
+		LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES"
+	}
+}
+
+dap.configurations.cpp = {
+	{
+		name = "Launch CPP Executable",
+		type = "cppdbg",
+		request = "launch",
+		program = function ()
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = true,
+	},
+	{
+		name = "Launch CPP LLDB",
+		type = "lldb",
+		request = 'launch',
+		program = function ()
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = true,
+		args = {}
+	}
+}
+
+
 vim.keymap.set('n', '<F5>', function()
 	require('dap').continue()
 end)

@@ -29,6 +29,8 @@ end
 local telescopeIgnore = get_config("ignore")
 if not telescopeIgnore then telescopeIgnore = {} end
 
+table.insert(telescopeIgnore, '.git')
+
 local fb_actions = require("telescope").extensions.file_browser.actions
 
 telescope.setup {
