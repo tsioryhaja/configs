@@ -247,7 +247,7 @@ vim.keymap.set('n', ';dt', function()
 end)
 
 vim.keymap.set('n', ';duf', function()
-	widgets = require'dap.ui.widgets'
+	local widgets = require'dap.ui.widgets'
 	widgets.centered_float(widgets.scopes)
 end)
 

@@ -18,8 +18,12 @@ function GetConfigs(dap)
 		local configuration = config.configuration
 		local name = config.name
 		local adapter_name = 'custom_adapter'..i
+		if not dap.configurations[config.language] then
+			dap.configurations[config.language] = {}
+		end
 		dap.adapters[adapter_name] = adapter
 		configuration.type = adapter_name
-		dap.configurations[name] = configuration
+		configuration.name = name
+		table.insert(dap.configurations[config.language], configuration)
 	end
 end
