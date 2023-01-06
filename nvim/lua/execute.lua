@@ -1,6 +1,5 @@
 function SetEnvVariable(name, value)
 	value = '"'..value..'"'
-	print(name.."="..value)
 	vim.cmd(":let $"..name.."="..value)
 end
 
