@@ -67,7 +67,15 @@ protocol.CompletionItemKind = {
   '', -- TypeParameter
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local function get_default_capabilities()
+	if require('cmp_nvim_lsp').default_capabilities == nil then
+		return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	else
+		return require('cmp_nvim_lsp').default_capabilities == nil
+	end	
+end
+
+local capabilities = get_default_capabilities()
 local util = require 'lspconfig.util'
 local nvim_lsp_configs = require 'lspconfig.configs'
 
@@ -101,44 +109,45 @@ nvim_lsp.tsserver.setup {
 
 nvim_lsp.gdscript.setup {
 	on_attach = on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 nvim_lsp.gopls.setup {
 	on_attach = on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 if python_version == '2.7' then
+	print(python_version)
 	nvim_lsp.pyls.setup {
 		on_attach = on_attach,
-		capabilities=require('cmp_nvim_lsp').default_capabilities(),
+		capabilities=get_default_capabilities(),
 	}
 else
 	nvim_lsp.pyright.setup {
 		on_attach = on_attach,
-		capabilities=require('cmp_nvim_lsp').default_capabilities(),
+		capabilities=get_default_capabilities(),
 	}
 end
 
 nvim_lsp.clangd.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 nvim_lsp.cmake.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 nvim_lsp.angularls.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 nvim_lsp.efm.setup {
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 	init_options = {documentFormatting=true},
 	filetypes = {"python"},
 	settings = {
@@ -169,7 +178,7 @@ nvim_lsp.sumneko_lua.setup {
 		}
 	},
 	on_attach=on_attach,
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	capabilities=get_default_capabilities(),
 }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
