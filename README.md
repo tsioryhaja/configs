@@ -39,3 +39,12 @@ npm install -g typescript typescript-language-server@0.10.1
 ```
 
 I actually use "Telescope" with ripgrep so you need to install "BurntSushi/ripgrep" and add it to you "path".
+
+# Config Oh-my-posh
+The Oh-my-posh config is inside the ohmyposh-configs.json. It's a modified version of the amro theme.
+In windows you need to add this inside the "C:\Users\{username}\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" file:
+
+```shell
+Import-Module oh-my-posh
+oh-my-posh init pwsh --config "E:/data/configs/ohmyposh-configs.json" | Invoke-Expression
+```

@@ -58,7 +58,7 @@
 					"template": "\ufbb0 {{ .Full }}"
 				},
 				{
-					"type": "golang",
+					"type": "go",
 					"style": "plain",
 					"foreground": "#07c6cf",
 					"template": "\ue627 {{ .Full }}"
