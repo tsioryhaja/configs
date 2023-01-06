@@ -1,27 +1,29 @@
 local status, dap = pcall(require, 'dap')
 if (not status) then return end
 
-load_config = function()
-	file = io.open('.dap.json','r')
-	content = nil
+require('dap_adapters.configs')
+
+local load_config = function()
+	local file = io.open('.dap.json','r')
+	local content = nil
 	if file then
-		c = file:read('*a')
+		local c = file:read('*a')
 		content = vim.json.decode(c)
 	end
 	return content
 end
 
-get_config = function(name)
-	value = nil
-	config = load_config()
+local get_config = function(name)
+	local value = nil
+	local config = load_config()
 	if config then
 		value = config[name]
 	end
 	return value
 end
 
-get_config_or_ask = function(name, asked)
-	value = get_config(name)
+local get_config_or_ask = function(name, asked)
+	local value = get_config(name)
 	if value == nil then
 		value = vim.fn.input(asked)
 	end
@@ -48,11 +50,18 @@ dap.configurations.python = {
 		request = 'launch';
 
 		program = function()
-			program = get_config('program')
+			local program = get_config('program')
 			if program == nil then
 				program = vim.fn.input("file to launch: ")
 			end
 			return program
+		end,
+		env = function()
+			local envs = get_config('env')
+			if envs == nil then
+				envs = {}
+			end
+			return envs
 		end,
 		pythonPath = function()
 			return 'python'
@@ -179,6 +188,8 @@ dap.configurations.cpp = {
 		args = {}
 	}
 }
+
+GetConfigs(dap)
 
 
 vim.keymap.set('n', '<F5>', function()

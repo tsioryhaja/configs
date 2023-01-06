@@ -1,3 +1,5 @@
+require('executor.config')
+
 vim.keymap.set('n', 'i', '<Up>')
 vim.keymap.set('n', 'k', '<Down>')
 vim.keymap.set('n', 'j', '<Left>')
@@ -50,3 +52,4 @@ local function save_current_tabs()
 end
 
 vim.api.nvim_create_user_command('SaveAllCurrent', save_current_tabs, {})
+vim.keymap.set('n', ';ecr', ExecuteCommand)

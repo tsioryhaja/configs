@@ -9,3 +9,5 @@ vim.cmd'au BufNewFile,BufRead Jenkinsfile setf groovy'
 
 require("plugins")
 require("maps")
+require("execute")
+SetEnvs()
