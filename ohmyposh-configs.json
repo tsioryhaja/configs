@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#45F1C2",
+          "style": "plain",
+          "template": "\uf508 {{ .UserName }} on",
+          "type": "session"
+        },
+        {
+          "foreground": "#0CA0D8",
+          "properties": {
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "style": "plain",
+          "template": " \uf07b {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#14A5AE",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true,
+						"fetch_status": true,
+						"fetch_worktree_count": true
+          },
+          "style": "plain",
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} {{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }} {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} | {{ end }}{{ if .Staging.Changed }} \uf634 {{ .Staging.String }}{{ end }}",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+		{
+			"alignment": "right",
+			"segments": [
+				{
+					"type": "python",
+					"style": "plain",
+					"foreground": "#eaf500",
+					"template": "{{ if .Venv }}\ue235 {{ .Venv }} {{ .Full }}{{ end }}"
+				},
+				{
+					"type": "node",
+					"style": "plain",
+					"foreground": "#00c51e",
+					"template": "{{ if .PackageManagerIcon }}  {{ .PackageManagerIcon }} {{ end }} \uf898 {{ .Full }}"
+				},
+				{
+					"type": "angular",
+					"style": "plain",
+					"foreground": "#ff5733",
+					"template": "\ufbb0 {{ .Full }}"
+				},
+				{
+					"type": "golang",
+					"style": "plain",
+					"foreground": "#07c6cf",
+					"template": "\ue627 {{ .Full }}"
+				},
+				{
+					"type": "cmake",
+					"style": "plain",
+					"foreground": "#0328f6",
+					"template": "CMake \ufb70 \ufb71"
+				}
+			],
+			"type": "prompt"
+		},
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#cd5e42",
+          "style": "plain",
+          "template": "\ue3bf ",
+          "type": "root"
+        },
+        {
+          "foreground": "#CD4277",
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 2
+}

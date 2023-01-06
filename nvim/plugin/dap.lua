@@ -103,6 +103,12 @@ dap.adapters.firefox = {
 	args = {'C:/vimdebugadapter/vscode-firefox-debug/dist/adapter.bundle.js'}
 }
 
+dap.adapters.chrome = {
+	type = "executable",
+	command = "node",
+	args = {'C:/vimdebugadapter/vscode-chrome-debug/out/src/chromeDebug.js'}
+}
+
 dap.adapters.node2 = {
 	type = 'executable',
 	command = 'node',
@@ -122,13 +128,25 @@ dap.configurations.gdscript = {
 
 dap.configurations.typescript = {
 	{
-		name = 'Debug with firefox',
+		name = 'Attach to firefox',
 		type = 'firefox',
-		request = 'launch',
+		request = 'attach',
 		reAttach = true,
 		url = 'http://localhost:4200',
 		webRoot = '${workspaceFolder}',
-		firefoxExecutable = 'C:/Program Files/Mozilla Firefox/firefox.exe',
+		cwd = vim.fn.getcwd(),
+		sourceMaps=true,
+	},
+	{
+		name = 'Attach to chrome 2',
+		type="chrome",
+		request="attach",
+		url = 'http://localhost:4200/*',
+		cwd=vim.fn.getcwd(),
+		protocol="inspector",
+		port=9222,
+		webRoot="${workspaceFolder}",
+		sourceMaps=true,
 	},
 	{
 		name = 'Debug node js',
