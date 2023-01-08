@@ -24,6 +24,7 @@ require("packer").startup(
 		use 'preservim/nerdtree'
 --		use 'noib3/nvim-cokeline'
 		use 'mfussenegger/nvim-dap'
+		use "rcarriga/nvim-dap-ui"
 		use 'nvim-telescope/telescope-dap.nvim'
 		use 'EdenEast/nightfox.nvim'
 		use 'windwp/nvim-autopairs'

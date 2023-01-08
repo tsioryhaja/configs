@@ -71,7 +71,7 @@ local function get_default_capabilities()
 	if require('cmp_nvim_lsp').default_capabilities == nil then
 		return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	else
-		return require('cmp_nvim_lsp').default_capabilities == nil
+		return require('cmp_nvim_lsp').default_capabilities()
 	end	
 end
 
