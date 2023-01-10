@@ -55,16 +55,6 @@ dap.configurations.python = {
 				program = vim.fn.input("file to launch: ")
 			end
 			return program
-		end,
-		env = function()
-			local envs = get_config('env')
-			if envs == nil then
-				envs = {}
-			end
-			return envs
-		end,
-		pythonPath = function()
-			return 'python'
 		end
 	},
 	{
@@ -87,6 +77,12 @@ dap.configurations.python = {
 				end
 			}
 		}
+	},
+	{
+		type = 'python',
+		name = 'Run current file',
+		request = 'launch',
+		program = '${file}'
 	}
 }
 
