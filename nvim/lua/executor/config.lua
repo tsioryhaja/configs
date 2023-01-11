@@ -19,8 +19,8 @@ function ExecuteCommand()
 	local buf = new_buf()
 	local win = new_win()
 	api.nvim_win_set_buf(win, buf)
-	local command = "ng"
-	local args = {"serve"}
+	local command = "cmake"
+	local args = {"-G", 'MinGW Makefiles', "."}
 	local stdin = uv.new_pipe(true)
 	local stdout = uv.new_pipe(false)
 	local stderr = uv.new_pipe(false)
@@ -43,8 +43,11 @@ function ExecuteCommand()
 	--- print('process opened', handle, pid_or_err)
 	stdout:read_start(vim.schedule_wrap(function(err, body)
 		if body then
-			local v = string.format("%s", body)
-			api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(body, '\n'))
+			local lines = api.nvim_buf_get_lines(buf, 0, -1, false)
+			for k, b in pairs(vim.split(body, '\n')) do
+				table.insert(lines, b)
+			end
+			api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 		end
 
 		--print(err, body)
