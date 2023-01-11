@@ -54,6 +54,7 @@ telescope.setup {
 				},
 				["n"] = {
 					-- your custom normal mode mappings
+					["<C-s>"] = actions.select_vertical,
 					["<C-n>"] = fb_actions.create,
 					["h"] = fb_actions.goto_parent_dir,
 					["/"] = function()

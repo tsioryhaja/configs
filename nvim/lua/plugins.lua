@@ -29,6 +29,7 @@ require("packer").startup(
 		use 'EdenEast/nightfox.nvim'
 		use 'windwp/nvim-autopairs'
 		use 'dinhhuy258/git.nvim'
+		use 'stevearc/dressing.nvim'
 	end
 )
 

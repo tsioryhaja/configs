@@ -45,6 +45,12 @@ dap.adapters.python_remote = {
 
 dap.configurations.python = {
 	{
+		type = 'python',
+		name = 'Run current file',
+		request = 'launch',
+		program = '${file}'
+	},
+	{
 		type = 'python';
 		name = 'Debug Python';
 		request = 'launch';
@@ -78,12 +84,7 @@ dap.configurations.python = {
 			}
 		}
 	},
-	{
-		type = 'python',
-		name = 'Run current file',
-		request = 'launch',
-		program = '${file}'
-	}
+	
 }
 
 dap.adapters.godot = {
@@ -247,5 +248,28 @@ vim.keymap.set('n', ';duf', function()
 	widgets.centered_float(widgets.scopes)
 end)
 
+local function setConditionalBreakPoint()
+	vim.ui.input({
+		prompt = "Condition: ",
+	}, function(input)
+		require('dap').set_breakpoint(input)
+	end)
+end
+
+vim.keymap.set('n', ';dcb',function()
+	setConditionalBreakPoint()
+end)
+
 vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapBreakpointRejected', {text='', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointCondition', {text='', texthl='', linehl='', numhl=''})
+
+
+local status_dapui, dapui = pcall(require, 'dapui')
+if (not status_dapui) then return end
+
+dapui.setup()
+
+vim.keymap.set('n', ';dui', function()
+	dapui.toggle()
+end)
