@@ -30,6 +30,8 @@ require("packer").startup(
 		use 'windwp/nvim-autopairs'
 		use 'dinhhuy258/git.nvim'
 		use 'stevearc/dressing.nvim'
+    use 'gpanders/editorconfig.nvim'
+    use 'kchmck/vim-coffee-script'
 	end
 )
 

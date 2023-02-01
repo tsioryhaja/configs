@@ -102,6 +102,22 @@ nvim_lsp_configs['pyls'] = {
 	}
 }
 
+nvim_lsp_configs['coffeesense'] = {
+  default_config = {
+    cmd = { 'cmd.exe', '/C', 'coffeesense-language-server', '--stdio' },
+    filetypes = {'coffee'},
+    root_dir = util.root_pattern 'package.json',
+    single_file_support = true,
+  },
+  docs = {
+    description = [[
+    the fuck am I doing?
+    well just do some random
+    npm install -g coffeesense-language-server
+    ]]
+  }
+}
+
 nvim_lsp.tsserver.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -143,6 +159,11 @@ nvim_lsp.cmake.setup {
 nvim_lsp.angularls.setup {
 	on_attach=on_attach,
 	capabilities=get_default_capabilities(),
+}
+
+nvim_lsp.coffeesense.setup {
+  on_attach=on_attach,
+  capabilities=get_default_capabilities(),
 }
 
 nvim_lsp.efm.setup {
