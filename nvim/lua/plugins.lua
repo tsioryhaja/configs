@@ -32,6 +32,8 @@ require("packer").startup(
 		use 'stevearc/dressing.nvim'
     use 'gpanders/editorconfig.nvim'
     use 'kchmck/vim-coffee-script'
+    use 'akinsho/git-conflict.nvim'
+--    use 'xiyaowong/nvim-transparent'
 	end
 )
 
