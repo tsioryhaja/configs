@@ -37,3 +37,6 @@ bufferline.setup({
 
 vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
 vim.keymap.set('n', '<A-j>', '<Cmd>BufferLineCyclePrev<CR>')
+vim.keymap.set('n', '<S-A-j>', '<Cmd>tabm -1<CR>')
+vim.keymap.set('n', '<S-A-l>', '<Cmd>tabm +1<CR>')
+

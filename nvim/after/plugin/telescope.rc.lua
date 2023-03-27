@@ -48,6 +48,9 @@ telescope.setup {
 			theme = "dropdown",
 			-- disable netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
+      layout_config = {
+        height = 40
+      },
 			mappings = {
 				["i"] = {
 					["<C-w>"] = function() vim.cmd('normal vbd') end,
