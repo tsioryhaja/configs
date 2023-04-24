@@ -26,6 +26,18 @@ get_config = function(name)
 	return value
 end
 
+local telescopeWorkspaceFolders = get_config("workspace-folders")
+if not telescopeWorkspaceFolders then
+  telescopeWorkspaceFolders = {}
+end
+telescopeWorkspaceFolders['current'] = vim.fn.getcwd()
+
+telescopeWorkspaceFoldersKeys = {}
+
+for key, val in pairs(telescopeWorkspaceFolders) do
+  table.insert(telescopeWorkspaceFoldersKeys, key)
+end
+
 local telescopeIgnore = get_config("ignore")
 if not telescopeIgnore then telescopeIgnore = {} end
 
@@ -108,4 +120,43 @@ vim.keymap.set("n", "sf", function()
 		initial_mode = "normal",
 		layout_config = { height = 40 }
 	})
+end)
+
+local customSearchFile = ""
+
+local function searchFileSpecificFolder()
+  vim.ui.input({
+    prompt = "Location :",
+    default = customSearchFile,
+    completion = "file"
+  }, function (input)
+    --if input == '' then
+      --input = customSearchFile
+    --end
+    customSearchFile = input
+    builtin.find_files({
+      no_ignore = false,
+      hidden = true,
+      cwd = customSearchFile
+    })
+  end)
+end
+
+telescope.load_extension("ui-select")
+
+local function searchFileSpecificFolderSelect()
+  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+    prompt = "Location :",
+  }, function (input)
+    customSearchFile = telescopeWorkspaceFolders[input]
+    builtin.find_files({
+      no_ignore = false,
+      hidden = true,
+      cwd = customSearchFile
+    })
+  end)
+end
+
+vim.keymap.set('n', ';wf', function()
+  searchFileSpecificFolderSelect()
 end)
