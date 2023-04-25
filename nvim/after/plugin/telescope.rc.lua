@@ -122,22 +122,22 @@ vim.keymap.set("n", "sf", function()
 	})
 end)
 
-local customSearchFile = ""
+local customSearchFileG = ""
 
 local function searchFileSpecificFolder()
   vim.ui.input({
     prompt = "Location :",
-    default = customSearchFile,
+    default = customSearchFileG,
     completion = "file"
   }, function (input)
     --if input == '' then
       --input = customSearchFile
     --end
-    customSearchFile = input
+    customSearchFileG = input
     builtin.find_files({
       no_ignore = false,
       hidden = true,
-      cwd = customSearchFile
+      cwd = customSearchFileG
     })
   end)
 end
@@ -146,9 +146,9 @@ telescope.load_extension("ui-select")
 
 local function searchFileSpecificFolderSelect()
   vim.ui.select(telescopeWorkspaceFoldersKeys, {
-    prompt = "Location :",
+    prompt = "Project :",
   }, function (input)
-    customSearchFile = telescopeWorkspaceFolders[input]
+    local customSearchFile = telescopeWorkspaceFolders[input]
     builtin.find_files({
       no_ignore = false,
       hidden = true,
@@ -159,4 +159,37 @@ end
 
 vim.keymap.set('n', ';wf', function()
   searchFileSpecificFolderSelect()
+end)
+
+
+local function navigateFileWorkspace()
+  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+    prompt = "Project :"
+  },function (input)
+    local customSearchFile = telescopeWorkspaceFolders[input]
+    telescope.extensions.file_browser.file_browser({
+      path = customSearchFile
+    })
+  end)
+end
+
+vim.keymap.set('n', "<A-w>", function()
+  navigateFileWorkspace()
+end)
+
+vim.keymap.set('n', "<A-g>", function()
+  local search_term = ""
+  local search_location = ""
+  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+    prompt = "Project :"
+  }, function(input)
+    search_location = telescopeWorkspaceFolders[input]
+    vim.ui.input({prompt = "Location :", completion = "file"}, function(input1)
+      search_location = search_location .. '/' .. input1
+      vim.ui.input({prompt = "Search :"}, function(input2)
+        search_term = input2
+        vim.cmd("vim " .. search_term .. ' ' .. search_location)
+      end)
+    end)
+  end)
 end)
