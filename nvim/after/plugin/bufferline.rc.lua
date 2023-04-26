@@ -36,7 +36,32 @@ bufferline.setup({
 })
 
 vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
-vim.keymap.set('n', '<A-j>', '<Cmd>BufferLineCyclePrev<CR>')
-vim.keymap.set('n', '<S-A-j>', '<Cmd>BufferLineMovePrev<CR>')
-vim.keymap.set('n', '<S-A-l>', '<Cmd>BufferLineMoveNext<CR>')
+vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
+vim.keymap.set('n', '<S-A-h>', '<Cmd>tabm -1<CR>')
+vim.keymap.set('n', '<S-A-l>', '<Cmd>tabm +1<CR>')
 
+
+local function get_all_tabs()
+  local tabs = vim.fn.gettabinfo()
+  local result_table = {}
+  local json_buffers = {}
+  for k, v in pairs(tabs) do
+    for k1, wn in pairs(v['windows']) do
+      buf = vim.api.nvim_win_get_buf(wn)
+      name = (buf and vim.api.nvim_buf_is_valid(buf)) and vim.api.nvim_buf_get_name(buf)
+      if not name or name == "" then name = "[No Name]" end
+      table.insert(result_table, name)
+      print(vim.bo[buf].buftype)
+      --table.insert(json_buffers, vim.fn.getbufinfo(buf))
+      table.insert(json_buffers, {vim.bo[buf].buftype, vim.bo[buf].filetype})
+    end
+  end
+  local file = io.open('tttt.json', 'w')
+  if file then
+    file:write(vim.json.encode(json_buffers))
+    file:close()
+  end
+  --vim.ui.select(json_buffers, {prompt = 'This is data shit'}, function() print('shit') end)
+end
+
+vim.keymap.set('n', '<A-a>', function() get_all_tabs() end)
