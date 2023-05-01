@@ -1,6 +1,10 @@
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 
+if not cmp then
+  return
+end
+
 cmp.setup(
 {
 	snippet = {

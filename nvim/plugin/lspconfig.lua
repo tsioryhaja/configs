@@ -166,6 +166,11 @@ nvim_lsp.coffeesense.setup {
   capabilities=get_default_capabilities(),
 }
 
+nvim_lsp.rust_analyzer.setup{
+  on_attach=on_attach,
+  capabilities=get_default_capabilities(),
+}
+
 nvim_lsp.efm.setup {
 	on_attach=on_attach,
 	capabilities=get_default_capabilities(),

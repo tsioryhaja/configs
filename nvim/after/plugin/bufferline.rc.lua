@@ -37,8 +37,10 @@ bufferline.setup({
 
 vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
 vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
-vim.keymap.set('n', '<S-A-h>', '<Cmd>tabm -1<CR>')
-vim.keymap.set('n', '<S-A-l>', '<Cmd>tabm +1<CR>')
+vim.keymap.set('n', '<A-j>', '<Cmd>m .+1<CR>')
+vim.keymap.set('n', '<A-k>', '<Cmd>m .-2<CR>')
+vim.keymap.set('n', '<C-A-h>', '<Cmd>BufferLineMovePrev<CR>')
+vim.keymap.set('n', '<C-A-l>', '<Cmd>BufferLineMoveNext<CR>')
 
 
 local function get_all_tabs()
