@@ -45,7 +45,9 @@ local function get_all_tabs()
   local tabs = vim.fn.gettabinfo()
   local result_table = {}
   local json_buffers = {}
+  local tabs_lists = {}
   for k, v in pairs(tabs) do
+    local buffers = {}
     for k1, wn in pairs(v['windows']) do
       buf = vim.api.nvim_win_get_buf(wn)
       name = (buf and vim.api.nvim_buf_is_valid(buf)) and vim.api.nvim_buf_get_name(buf)
@@ -53,8 +55,10 @@ local function get_all_tabs()
       table.insert(result_table, name)
       print(vim.bo[buf].buftype)
       --table.insert(json_buffers, vim.fn.getbufinfo(buf))
-      table.insert(json_buffers, {vim.bo[buf].buftype, vim.bo[buf].filetype})
+      table.insert(json_buffers, vim.fn.getwininfo(wn))
+      --table.insert(json_buffers, {vim.bo[buf].buftype, vim.bo[buf].filetype, vim.bo[buf]})
     end
+    table.insert(tabs_lists, buffers)
   end
   local file = io.open('tttt.json', 'w')
   if file then
