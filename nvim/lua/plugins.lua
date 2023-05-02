@@ -35,6 +35,7 @@ require("packer").startup(
     use 'kchmck/vim-coffee-script'
     use 'akinsho/git-conflict.nvim'
     use 'Mofiqul/vscode.nvim'
+    use 'numToStr/Comment.nvim'
 --    use 'xiyaowong/nvim-transparent'
 	end
 )
