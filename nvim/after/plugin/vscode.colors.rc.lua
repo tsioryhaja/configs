@@ -9,6 +9,10 @@ vsc.setup({
   disable_nvimtree_bg = true,
   color_overrides = {
     vscLineNumber = '#FFFFFF',
+    -- vscPopupHighlightGray = 'NONE',
+    vscPopupBack = '#525252',
+    vscPopupHighlightBlue = '#525252',
+    vscCursorDarkDark = "#3B3B3B"
   },
 })
 
