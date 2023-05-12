@@ -272,7 +272,22 @@ vim.fn.sign_define('DapBreakpointCondition', {text='', texthl='', linehl='', 
 local status_dapui, dapui = pcall(require, 'dapui')
 if (not status_dapui) then return end
 
-dapui.setup()
+dapui.setup(
+  {
+    controls = {
+      icons = {
+        pause = "",
+        play = "",
+        step_into = "",
+        step_over = "",
+        step_out = "",
+        step_back = "",
+        run_last = "",
+        terminate = "",
+      }
+    }
+  }
+)
 
 vim.keymap.set('n', ';dui', function()
 	dapui.toggle()
