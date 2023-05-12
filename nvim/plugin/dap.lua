@@ -165,10 +165,13 @@ dap.configurations.typescript = {
 dap.adapters.cppdbg = {
 	id='cppdbg',
 	type='executable',
+	-- command = 'C:\\Users\\tsiory_re\\projects\\opensource\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
 	command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
 	options = {
-		detached = false
-	}
+		detached = false,
+    runInTerminal = true
+	},
+  runInTerminal = true
 }
 
 dap.adapters.lldb = {
@@ -190,6 +193,7 @@ dap.configurations.cpp = {
 		end,
 		cwd = '${workspaceFolder}',
 		stopOnEntry = true,
+    runInTerminal = true
 	},
 	{
 		name = "Launch CPP LLDB",

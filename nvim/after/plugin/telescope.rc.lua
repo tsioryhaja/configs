@@ -188,7 +188,8 @@ vim.keymap.set('n', "<A-g>", function()
       search_location = search_location .. '/' .. input1
       vim.ui.input({prompt = "Search :"}, function(input2)
         search_term = input2
-        vim.cmd("vim " .. search_term .. ' ' .. search_location)
+        local request_status, result = pcall(vim.cmd, "vim " .. search_term .. ' ' .. search_location)
+        print(result)
       end)
     end)
   end)
