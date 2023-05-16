@@ -2,6 +2,7 @@ local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
 
 saga.setup {
+  error_sign = "a",
 	server_filetype_map = {
 		typescript = 'typescript'
 	}
@@ -12,6 +13,28 @@ vim.fn.sign_define('DiagnosticSignError', {text='', texthl='DiagnosticSignErr
 vim.fn.sign_define('DiagnosticSignWarn', {text='', texthl='DiagnosticSignWarn', numhl='DiagnosticSignWarn'})
 vim.fn.sign_define('DiagnosticSignInfo', {text='', texthl='DiagnosticSignInfo', numhl='DiagnosticSignInfo'})
 vim.fn.sign_define('DiagnosticSignHint', {text='', texthl='DiagnosticSignHint', numhl='DiagnosticSignHint'})
+
+function define_severity_based_prefix(diagnostic)
+  if diagnostic.severity == vim.diagnostic.severity.ERROR then
+    return ''
+  end
+  if diagnostic.severity == vim.diagnostic.severity.WARN then
+    return ''
+  end
+  if diagnostic.severity == vim.diagnostic.severity.INFO then
+    return ''
+  end
+  if diagnostic.severity == vim.diagnostic.severity.HINT then
+    return ''
+  end
+  return ''
+end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = ""
+  }
+})
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
