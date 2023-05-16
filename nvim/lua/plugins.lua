@@ -10,7 +10,7 @@ require("packer").startup(
 		use 'L3MON4D3/LuaSnip'
 		use 'onsails/lspkind-nvim'
 		use 'nvim-lualine/lualine.nvim'
---		use 'kyazdani42/nvim-tree.lua'
+    use 'nvim-tree/nvim-tree.lua'
 		use {
 			'nvim-telescope/telescope.nvim',
 			requires = {'nvim-lua/plenary.nvim' }
@@ -22,7 +22,7 @@ require("packer").startup(
 		use 'glepnir/lspsaga.nvim'
 		use 'lewis6991/gitsigns.nvim'
 		use 'habamax/vim-godot'
-		use 'preservim/nerdtree'
+		-- use 'preservim/nerdtree'
 --		use 'noib3/nvim-cokeline'
 		use 'mfussenegger/nvim-dap'
 		use "rcarriga/nvim-dap-ui"
