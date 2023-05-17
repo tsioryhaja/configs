@@ -192,7 +192,7 @@ nvim_lsp.efm.setup {
 	}
 }
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
 	settings = {
 		Lua = {
 			runtime = {
