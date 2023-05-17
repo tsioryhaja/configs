@@ -151,6 +151,12 @@ nvim_lsp.clangd.setup {
 	capabilities=get_default_capabilities(),
 }
 
+-- nvim_lsp.ccls.setup {
+--   on_attach=on_attach,
+--   capabilities=get_default_capabilities(),
+--   single_file_support = true
+-- }
+
 nvim_lsp.cmake.setup {
 	on_attach=on_attach,
 	capabilities=get_default_capabilities(),
