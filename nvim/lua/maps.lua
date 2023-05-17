@@ -16,6 +16,12 @@ vim.cmd(':vnoremap h i')
 --]]
 local api = vim.api
 
+vim.filetype.add({
+  extension = {
+    vcxproj = 'xml'
+  }
+})
+
 local function get_wins_buf(wins)
 	local wins_buffer_names = {}
 	for i, win_key in ipairs(wins) do
