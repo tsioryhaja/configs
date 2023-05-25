@@ -91,6 +91,11 @@ function()
 		hidden = true
 	})
 end)
+vim.keymap.set('n', ';b', builtin.buffers)
+vim.keymap.set('n', ';ch', builtin.command_history)
+vim.keymap.set('n', ';cl', builtin.commands)
+vim.keymap.set('n', ';cbff', builtin.current_buffer_fuzzy_find)
+vim.keymap.set('n', ';cbt', builtin.current_buffer_tags)
 
 vim.keymap.set('n', ';r', function()
 	builtin.live_grep()

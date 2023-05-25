@@ -15,4 +15,5 @@ require("plugins")
 require("maps")
 require("execute")
 SetEnvs()
+require("executor.cmd")
 vim.cmd ":set nofixendofline"
