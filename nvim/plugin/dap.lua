@@ -183,6 +183,16 @@ dap.adapters.lldb = {
 	}
 }
 
+dap.adapters.codelldb = {
+  type = 'server',
+  port = "${port}",
+  executable = {
+    command = 'C:\\vimdebugadapter\\codelldb-x86_64-windows\\extension\\adapter\\codelldb.exe',
+    args = {"--port", "${port}"},
+    detached = false,
+  }
+}
+
 dap.configurations.cpp = {
 	{
 		name = "Launch CPP Executable",
@@ -205,7 +215,16 @@ dap.configurations.cpp = {
 		cwd = '${workspaceFolder}',
 		stopOnEntry = true,
 		args = {}
-	}
+	},
+  {
+    name = "CodeLLDB",
+    type = "codelldb",
+    request = "launch",
+    program = function ()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
+    end,
+    cwd = "${workspaceFolder}",
+  }
 }
 
 GetConfigs(dap)
