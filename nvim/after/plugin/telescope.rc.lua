@@ -57,12 +57,11 @@ telescope.setup {
 	},
 	extensions = {
 		file_browser = {
-			theme = "dropdown",
+			-- theme = "dropdown",
 			-- disable netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
-      layout_config = {
-        height = 40
-      },
+      sorting_strategy = "ascending",
+      layout_config = { prompt_position = "top" },
 			mappings = {
 				["i"] = {
 					["<C-w>"] = function() vim.cmd('normal vbd') end,
@@ -88,7 +87,11 @@ vim.keymap.set('n', ';f',
 function()
 	builtin.find_files({
 		no_ignore = false,
-		hidden = true
+		hidden = true,
+    sorting_strategy = "ascending",
+    layout_config = {
+      prompt_position = 'top'
+    }
 	})
 end)
 vim.keymap.set('n', ';b', builtin.buffers)
@@ -123,7 +126,8 @@ vim.keymap.set("n", "sf", function()
 		grouped = true,
 		previewer = false,
 		initial_mode = "normal",
-		layout_config = { height = 40 }
+    sorting_strategy = "ascending",
+		layout_config = { prompt_position = "top" }
 	})
 end)
 
@@ -147,7 +151,7 @@ local function searchFileSpecificFolder()
   end)
 end
 
-telescope.load_extension("ui-select")
+-- telescope.load_extension("ui-select")
 
 local function searchFileSpecificFolderSelect()
   vim.ui.select(telescopeWorkspaceFoldersKeys, {
@@ -199,3 +203,4 @@ vim.keymap.set('n', "<A-g>", function()
     end)
   end)
 end)
+
