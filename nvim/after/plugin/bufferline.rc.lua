@@ -62,6 +62,30 @@ bufferline.setup({
       fg = "#f5fc9f",
       bg = "#666666"
     },
+    info = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    info_visible = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    info_diagnostic = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint_visible = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint_diagnostic = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
 	},
 })
 

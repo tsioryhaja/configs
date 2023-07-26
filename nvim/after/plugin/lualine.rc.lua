@@ -5,8 +5,10 @@ lualine.setup {
 	options = {
 		icons_enabled = true,
 		theme = 'material',
-		section_separators = { left = '', right = '' },
-		component_separator = { left = '', right = '' },
+		-- section_separators = { left = '', right = '' },
+		-- component_separator = { left = '', right = '' },
+		section_separators = { left = '', right = '' },
+		component_separator = { left = '\\', right = '/' },
 		disabled_filetypes = {}
 	},
 	sections = {

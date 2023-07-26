@@ -161,7 +161,12 @@ local function searchFileSpecificFolderSelect()
     builtin.find_files({
       no_ignore = false,
       hidden = true,
-      cwd = customSearchFile
+      cwd = customSearchFile,
+      respect_gitignore = true,
+      grouped = true,
+      initial_mode = "normal",
+      sorting_strategy = "ascending",
+      layout_config = { prompt_position = "top" }
     })
   end)
 end
@@ -177,7 +182,7 @@ local function navigateFileWorkspace()
   },function (input)
     local customSearchFile = telescopeWorkspaceFolders[input]
     telescope.extensions.file_browser.file_browser({
-      path = customSearchFile
+      path = customSearchFile,
     })
   end)
 end
