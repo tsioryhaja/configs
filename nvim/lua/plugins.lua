@@ -16,7 +16,7 @@ require("packer").startup(
 			requires = {'nvim-lua/plenary.nvim' }
 		}
 		use 'nvim-telescope/telescope-file-browser.nvim'
-    use 'nvim-telescope/telescope-ui-select.nvim'
+    -- use 'nvim-telescope/telescope-ui-select.nvim'
 		use 'kyazdani42/nvim-web-devicons'
 		use 'akinsho/bufferline.nvim'
 		use 'glepnir/lspsaga.nvim'
@@ -37,6 +37,7 @@ require("packer").startup(
     use 'Mofiqul/vscode.nvim'
     use 'numToStr/Comment.nvim'
 --    use 'xiyaowong/nvim-transparent'
+    use "sindrets/diffview.nvim"
 	end
 )
 

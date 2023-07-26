@@ -13,6 +13,7 @@ dressing.setup({
 		prefer_width = 40,
 		win_options = {
 			wrap = false,
+      winhighlight = "NormalFloat:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopePromptTitle",
 		},
 		mappings = {
 			n = {
@@ -28,6 +29,6 @@ dressing.setup({
 		}
 	},
 	select = {
-		enabled = false,
+		enabled = true,
 	}
 })

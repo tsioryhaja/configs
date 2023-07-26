@@ -9,6 +9,12 @@ bufferline.setup({
 		show_buffer_close_icons = false,
 		show_close_icon = true,
 		color_iconss = true,
+    diagnostics = "nvim_lsp",
+    diagnostics_indicator = function (count, level, errors, ctx)
+      local error = level:match("error") and "  " .. count or ""
+      local warning = level:match("warning") and "  " .. count or ""
+      return warning .. " " .. error
+    end
 	},
 	highlights = {
 		separator = {
@@ -31,7 +37,55 @@ bufferline.setup({
 		},
     modified = {
       bg = "#666666"
-    }
+    },
+    error = {
+      fg = "#f00a2c",
+      bg = "#666666"
+    },
+    error_visible = {
+      fg = "#f00a2c",
+      bg = "#666666"
+    },
+    error_diagnostic = {
+      fg = "#f00a2c",
+      bg = "#666666"
+    },
+    warning = {
+      fg = "#f5fc9f",
+      bg = "#666666"
+    },
+    warning_visible = {
+      fg = "#f5fc9f",
+      bg = "#666666"
+    },
+    warning_diagnostic = {
+      fg = "#f5fc9f",
+      bg = "#666666"
+    },
+    info = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    info_visible = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    info_diagnostic = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint_visible = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
+    hint_diagnostic = {
+      fg = "#215bb8",
+      bg = "#666666"
+    },
 	},
 })
 
@@ -39,8 +93,8 @@ vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
 vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
 vim.keymap.set('n', '<A-j>', '<Cmd>m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Cmd>m .-2<CR>')
-vim.keymap.set('n', '<C-A-h>', '<Cmd>BufferLineMovePrev<CR>')
-vim.keymap.set('n', '<C-A-l>', '<Cmd>BufferLineMoveNext<CR>')
+vim.keymap.set('n', '<C-A-h>', '<Cmd>tabm -1<CR>')
+vim.keymap.set('n', '<C-A-l>', '<Cmd>tabm +1<CR>')
 
 
 local function get_all_tabs()

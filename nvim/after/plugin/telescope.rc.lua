@@ -57,12 +57,12 @@ telescope.setup {
 	},
 	extensions = {
 		file_browser = {
-			theme = "dropdown",
+			-- theme = "dropdown",
 			-- disable netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
-      layout_config = {
-        height = 40
-      },
+      no_ignore = true,
+      sorting_strategy = "ascending",
+      layout_config = { prompt_position = "top" },
 			mappings = {
 				["i"] = {
 					["<C-w>"] = function() vim.cmd('normal vbd') end,
@@ -88,7 +88,11 @@ vim.keymap.set('n', ';f',
 function()
 	builtin.find_files({
 		no_ignore = false,
-		hidden = true
+		hidden = true,
+    sorting_strategy = "ascending",
+    layout_config = {
+      prompt_position = 'top'
+    }
 	})
 end)
 vim.keymap.set('n', ';b', builtin.buffers)
@@ -112,18 +116,19 @@ end)
 vim.keymap.set('n', ';e', function()
 	builtin.diagnostics()
 end)
-vim.keymap.set('n', '<A-f>', '<Cmd>Telescope file_browser path=%:p:h<CR>')
+vim.keymap.set('n', 'sf', '<Cmd>Telescope file_browser path=%:p:h<CR>')
 vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
-vim.keymap.set("n", "sf", function()
+vim.keymap.set("n", "<A-f>", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
 		cwd = telescope_buffer_dir(),
 		respect_gitignore = true,
+    no_ignore = true,
 		hidden = true,
 		grouped = true,
-		previewer = false,
-		initial_mode = "normal",
-		layout_config = { height = 40 }
+		initial_mode = "insert",
+    sorting_strategy = "ascending",
+		layout_config = { prompt_position = "top" }
 	})
 end)
 
@@ -147,7 +152,7 @@ local function searchFileSpecificFolder()
   end)
 end
 
-telescope.load_extension("ui-select")
+-- telescope.load_extension("ui-select")
 
 local function searchFileSpecificFolderSelect()
   vim.ui.select(telescopeWorkspaceFoldersKeys, {
@@ -157,7 +162,12 @@ local function searchFileSpecificFolderSelect()
     builtin.find_files({
       no_ignore = false,
       hidden = true,
-      cwd = customSearchFile
+      cwd = customSearchFile,
+      respect_gitignore = true,
+      grouped = true,
+      initial_mode = "normal",
+      sorting_strategy = "ascending",
+      layout_config = { prompt_position = "top" }
     })
   end)
 end
@@ -173,7 +183,7 @@ local function navigateFileWorkspace()
   },function (input)
     local customSearchFile = telescopeWorkspaceFolders[input]
     telescope.extensions.file_browser.file_browser({
-      path = customSearchFile
+      path = customSearchFile,
     })
   end)
 end
@@ -199,3 +209,4 @@ vim.keymap.set('n', "<A-g>", function()
     end)
   end)
 end)
+
