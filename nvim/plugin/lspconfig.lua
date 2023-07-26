@@ -119,6 +119,19 @@ nvim_lsp_configs['coffeesense'] = {
   }
 }
 
+nvim_lsp_configs['vcxproj'] = {
+  default_config = {
+    cmd = { 'MSBuildProjectTools.LanguageServer.Host' },
+    filetypes = { 'xml' },
+    single_file_support = true
+  }
+}
+
+nvim_lsp.vcxproj.setup{
+  on_attach = on_attach,
+  capabilities=get_default_capabilities(),
+}
+
 nvim_lsp.tsserver.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -127,6 +140,7 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.gdscript.setup {
 	on_attach = on_attach,
 	capabilities=get_default_capabilities(),
+  cmd = {'nc', 'localhost', '6005'}
 }
 
 nvim_lsp.gopls.setup {
