@@ -60,6 +60,7 @@ telescope.setup {
 			-- theme = "dropdown",
 			-- disable netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
+      no_ignore = true,
       sorting_strategy = "ascending",
       layout_config = { prompt_position = "top" },
 			mappings = {
@@ -115,17 +116,17 @@ end)
 vim.keymap.set('n', ';e', function()
 	builtin.diagnostics()
 end)
-vim.keymap.set('n', '<A-f>', '<Cmd>Telescope file_browser path=%:p:h<CR>')
+vim.keymap.set('n', 'sf', '<Cmd>Telescope file_browser path=%:p:h<CR>')
 vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
-vim.keymap.set("n", "sf", function()
+vim.keymap.set("n", "<A-f>", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
 		cwd = telescope_buffer_dir(),
 		respect_gitignore = true,
+    no_ignore = true,
 		hidden = true,
 		grouped = true,
-		previewer = false,
-		initial_mode = "normal",
+		initial_mode = "insert",
     sorting_strategy = "ascending",
 		layout_config = { prompt_position = "top" }
 	})

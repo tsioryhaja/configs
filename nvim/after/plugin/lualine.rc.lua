@@ -1,19 +1,45 @@
 local status, lualine = pcall(require, "lualine")
 if (not status) then return end
 
+local colors = {
+  white = "#f0f0f0",
+  dark_grey = "#252526",
+  light_grey = "#3b3b3b",
+  green  = '#c3e88d',
+  purple = '#c792ea',
+  red   = '#f07178',
+}
+
+local theme = {
+  normal = {
+    a = { fg = colors.dark_grey, bg = colors.white },
+    b = { fg = colors.white, bg = colors.dark_grey },
+    c = { fg = colors.white, bg = colors.light_grey }
+  },
+  insert = {
+    a = { fg = colors.light_grey, bg = colors.green }
+  },
+  visual = {
+    a = { fg = colors.light_grey, bg = colors.purple }
+  },
+  replace = {
+    a = { fg = colors.light_grey, bg = colors.red }
+  }
+}
+
 lualine.setup {
 	options = {
 		icons_enabled = true,
-		theme = 'material',
+		theme = theme,
 		-- section_separators = { left = '', right = '' },
-		-- component_separator = { left = '', right = '' },
+		component_separator = { left = '', right = '' },
 		section_separators = { left = '', right = '' },
-		component_separator = { left = '\\', right = '/' },
+		-- component_separator = { left = '\\', right = '/' },
 		disabled_filetypes = {}
 	},
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch' },
+		lualine_b = { 'branch', 'diff' },
 		lualine_c = { {
 			'filename',
 			file_status = true,
@@ -21,7 +47,7 @@ lualine.setup {
 		} },
 		lualine_x = {
 			{
-				'diagnostic',
+				'diagnostics',
 				sources = { "nvim_diagnostic" },
 				symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
 			},

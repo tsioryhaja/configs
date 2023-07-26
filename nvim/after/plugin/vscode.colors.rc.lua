@@ -19,7 +19,7 @@ vsc.setup({
 vsc.load()
 
 
-colors = {
+local colors = {
   white = "#dee1e6",
   darker_black = "#1a1a1a",
   black = "#1E1E1E", --  nvim bg
@@ -53,7 +53,7 @@ colors = {
   folder_bg = "#7A8A92",
 }
 
-highlights = {
+local highlights = {
 
   TelescopeBorder = {
     fg = colors.darker_black,
