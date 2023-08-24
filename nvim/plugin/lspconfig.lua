@@ -15,6 +15,7 @@ local on_attach = function(client, bufnr)
 
 	-- buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'gv', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
   -- to go back from the ;gd use ctrl + o
 	buf_set_keymap('n', ';gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
