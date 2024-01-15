@@ -1,11 +1,11 @@
 local status, nightfox = pcall(require, 'nightfox')
 if (not status) then return end
 
---nightfox.setup({
+-- nightfox.setup({
 --  options = {
---    --transparent = true,
+--    transparent = true,
 --  },
---})
+-- })
 --
---vim.cmd("colorscheme nordfox")
+-- vim.cmd("colorscheme nordfox")
 --vim.cmd("colorscheme dawnfox")
