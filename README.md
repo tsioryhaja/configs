@@ -22,7 +22,7 @@ git clone https://github.com/tsioryhaja/configs.git
 After that, create a symbolic link to the nvim folder in the project in "~\AppData\Local\nvim".
 
 ``` shell
-mklink /D "$env:LOCALAPPDATA\nvim" "D:\configs\nvim"
+cmd.exe /c mklink /D "$env:LOCALAPPDATA\nvim" "D:\configs\nvim"
 ```
 
 Then open neovim anywhere and install packages with packer

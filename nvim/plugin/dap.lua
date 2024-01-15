@@ -1,6 +1,12 @@
 local status, dap = pcall(require, 'dap')
 if (not status) then return end
 
+local utils = require('dap.utils')
+
+local rpc = require('dap.rpc')
+
+require('dap_adapters.msvc')
+
 require('dap_adapters.configs')
 
 local load_config = function()
@@ -29,6 +35,7 @@ local get_config_or_ask = function(name, asked)
 	end
 	return value
 end
+
 
 dap.adapters.python = {
 	type = 'executable';
@@ -88,10 +95,25 @@ dap.configurations.python = {
 }
 
 dap.adapters.godot = {
-	type = 'executable',
-	command = 'node',
-	args = {'E:/data/nodeprojects/godot-dap-adapter/out/debug_adapter.js', vim.fn.getcwd()},
-	cwd = vim.fn.getcwd(),
+	type = 'server',
+	host = '127.0.0.1',
+	port = 6006,
+	-- port = 6007,
+  debugServer = 6006,
+  launchScene = true,
+  launchGameInstance = false,
+  pathMappings = {
+    {
+      localRoot = function()
+        -- return vim.fn.input("Local code folder > ", vim.fn.getcwd(), "file")
+        return vim.fn.getcwd()
+      end,
+      remoteRoot = function()
+        -- return vim.fn.input("Container code folder > ", vim.fn.getcwd(), "file")
+        return "res:/"
+      end
+    }
+	}
 }
 
 dap.adapters.firefox = {
@@ -114,13 +136,18 @@ dap.adapters.node2 = {
 
 dap.configurations.gdscript = {
 	{
-		name = 'Debug file',
-		type = 'godot',
+	  type = 'godot',
 		request = 'launch',
-		program = function()
-			return vim.fn.input("File :")
-		end
-	}
+		name = 'Launch game',
+    project = "${workspaceFolder}",
+	},
+	{
+	  type = 'godot',
+		request = 'attach',
+		name = 'Attach game',
+    project = "${workspaceFolder}",
+	},
+
 }
 
 dap.configurations.typescript = {
@@ -166,12 +193,51 @@ dap.adapters.cppdbg = {
 	id='cppdbg',
 	type='executable',
 	-- command = 'C:\\Users\\tsiory_re\\projects\\opensource\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
-	command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+  command = 'C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+	-- command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
 	options = {
 		detached = false,
     runInTerminal = true
 	},
   runInTerminal = true
+}
+
+-- dap.defaults.fallback.external_terminal = {
+--   command = 'powershell';
+--   args = {'-NoExit', '-Command', '"&{Import-Module """C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll""";', 'Enter-VsDevShell', '4c10e150', '-SkipAutomaticLocation', '-DevCmdArguments', '"""-arch=x64 -host_arch=x64"""}"'};
+-- }
+
+-- dap.defaults.fallback.external_terminal = {
+--   command = 'powershell',
+--   args = {'', '-Command', '&{Import-Module "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 4c10e150 -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}', '/c'}
+-- }
+
+dap.defaults.fallback.external_terminal = {
+  command = "cmd.exe",
+  args = {'/c'}
+}
+
+local function run_in_terminal(self, payload)
+  utils.notify(vim.json.encode(payload))
+end
+
+dap.adapters.cppvsdbg = {
+	id='cppvsdbg',
+	type='executable',
+  command = 'C:\\Users\\tsior\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\vsdbg\\bin\\vsdbg.exe',
+  args = { "--interpreter=vscode" },
+	options = {
+    externalTerminal = true,
+    -- logging = {
+    --   moduleLoad = false,
+    --   trace = true
+    -- }
+	},
+  runInTerminal =  true,
+  reverse_request_handlers = {
+    handshake = RunHandshake,
+
+  },
 }
 
 dap.adapters.lldb = {
@@ -201,10 +267,29 @@ dap.configurations.cpp = {
 		program = function ()
 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 		end,
-		cwd = '${workspaceFolder}',
+		cwd = vim.fn.getcwd(),
+    miDebuggerPath = "C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\vsdbg\\bin\\vsdbg.exe",
 		stopOnEntry = true,
     runInTerminal = true
 	},
+  {
+    name = 'Try vsdbg',
+    type = "cppvsdbg",
+    request = "launch",
+    program = function ()
+      return vim.fn.input('Path: ', vim.fn.getcwd() .. '\\Debug\\test.exe', 'file')
+    end,
+    cwd = vim.fn.getcwd(),
+    clientID = 'vscode',
+    clientName = 'Visual Studio Code',
+    externalTerminal = true,
+    columnsStartAt1 = true,
+    linesStartAt1 = true,
+    locale = "en",
+    pathFormat = "path",
+    externalConsole = true
+    -- console = "externalTerminal"
+  },
 	{
 		name = "Launch CPP LLDB",
 		type = "lldb",
