@@ -193,24 +193,15 @@ dap.adapters.cppdbg = {
 	id='cppdbg',
 	type='executable',
 	-- command = 'C:\\Users\\tsiory_re\\projects\\opensource\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
-  command = 'C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+  -- command = 'C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+  command = 'powershell',
+  args = { '/c', 'C:\\Users\\tsiory_re\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe' },
 	-- command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
 	options = {
 		detached = false,
-    runInTerminal = true
+    externalTerminal = true,
 	},
-  runInTerminal = true
 }
-
--- dap.defaults.fallback.external_terminal = {
---   command = 'powershell';
---   args = {'-NoExit', '-Command', '"&{Import-Module """C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll""";', 'Enter-VsDevShell', '4c10e150', '-SkipAutomaticLocation', '-DevCmdArguments', '"""-arch=x64 -host_arch=x64"""}"'};
--- }
-
--- dap.defaults.fallback.external_terminal = {
---   command = 'powershell',
---   args = {'', '-Command', '&{Import-Module "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 4c10e150 -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}', '/c'}
--- }
 
 dap.defaults.fallback.external_terminal = {
   command = "cmd.exe",
@@ -240,25 +231,6 @@ dap.adapters.cppvsdbg = {
   },
 }
 
-dap.adapters.lldb = {
-	type = 'executable',
-	command = 'lldb-vscode',
-	name = 'lldb',
-	env = {
-		LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES"
-	}
-}
-
-dap.adapters.codelldb = {
-  type = 'server',
-  port = "${port}",
-  executable = {
-    command = 'C:\\vimdebugadapter\\codelldb-x86_64-windows\\extension\\adapter\\codelldb.exe',
-    args = {"--port", "${port}"},
-    detached = false,
-  }
-}
-
 dap.configurations.cpp = {
 	{
 		name = "Launch CPP Executable",
@@ -267,10 +239,10 @@ dap.configurations.cpp = {
 		program = function ()
 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 		end,
-		cwd = vim.fn.getcwd(),
-    miDebuggerPath = "C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\vsdbg\\bin\\vsdbg.exe",
+		cwd = '${workspaceFolder}',
 		stopOnEntry = true,
-    runInTerminal = true
+    externalTerminal = true,
+    -- runInTerminal = true
 	},
   {
     name = 'Try vsdbg',
@@ -289,26 +261,6 @@ dap.configurations.cpp = {
     pathFormat = "path",
     externalConsole = true
     -- console = "externalTerminal"
-  },
-	{
-		name = "Launch CPP LLDB",
-		type = "lldb",
-		request = 'launch',
-		program = function ()
-			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
-		end,
-		cwd = '${workspaceFolder}',
-		stopOnEntry = true,
-		args = {}
-	},
-  {
-    name = "CodeLLDB",
-    type = "codelldb",
-    request = "launch",
-    program = function ()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
-    end,
-    cwd = "${workspaceFolder}",
   }
 }
 
