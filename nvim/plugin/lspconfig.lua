@@ -22,6 +22,8 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', ';ge', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
 	buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+
+  buf_set_keymap('n', 'bf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 load_config = function()
@@ -211,7 +213,14 @@ nvim_lsp.efm.setup {
 		rootMarkers = {".git/"},
 		languages={
 			python={
-				{formatCommand="black --quiet -", formatStdin=true}
+				{formatCommand="black --quiet -", formatStdin=true},
+        {
+          lintCommand="pylint --output-format text --score no --msg-template '{path}:{line}:{column}:{C}:{msg}'",
+          lintStdin=false,
+          lintFormats={'%f:%l:%c:%t:%m'},
+          lintOffsetColumns=1,
+          lintCategoryMap={I='H',R='I',C='I',W='W',E='E',F='E'}
+        }
 			}
 		}
 	}
