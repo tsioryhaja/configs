@@ -30,12 +30,6 @@ function define_severity_based_prefix(diagnostic)
   return ''
 end
 
-vim.diagnostic.config({
-  virtual_text = {
-    prefix = ""
-  }
-})
-
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
 vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
@@ -45,3 +39,6 @@ vim.keymap.set('n', 'gp', '<Cmd>Lspsaga preview_definition<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 vim.keymap.set('n', 'gld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
 vim.keymap.set('n', ';ca', '<Cmd>Lspsaga code_action<CR>', opts)
+vim.keymap.set('n', '<A-p>', function ()
+  require('lspsaga.symbol.winbar').toggle()
+end)

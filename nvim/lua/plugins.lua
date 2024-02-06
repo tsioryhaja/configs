@@ -9,6 +9,8 @@ require("packer").startup(
 		use 'hrsh7th/vim-vsnip'
 		use 'L3MON4D3/LuaSnip'
 		use 'onsails/lspkind-nvim'
+    use 'ErichDonGubler/lsp_lines.nvim'
+    -- use 'whynothugo/lsp_lines.nvim'
 		use 'nvim-lualine/lualine.nvim'
     use 'nvim-tree/nvim-tree.lua'
 		use {

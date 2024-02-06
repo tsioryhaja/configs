@@ -40,4 +40,35 @@ cmp.setup(
 	},
 })
 
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = ""
+  }
+})
 
+
+local lsp_lines = require('lsp_lines')
+
+if not lsp_lines then
+  return
+end
+lsp_lines.setup()
+
+-- vim.diagnostic.config({virtual_text = false})
+
+local function toggleLspLines()
+  if vim.diagnostic.config().virtual_text then
+    vim.diagnostic.config({virtual_text = false})
+  else
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = ""
+      }
+    })
+  end
+  lsp_lines.toggle()
+end
+
+lsp_lines.toggle()
+
+vim.keymap.set('n', '<A-l>', toggleLspLines, { desc = "Toggle lsp_lines" })
