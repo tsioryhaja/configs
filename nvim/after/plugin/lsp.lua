@@ -71,4 +71,4 @@ end
 
 lsp_lines.toggle()
 
-vim.keymap.set('n', '<A-l>', toggleLspLines, { desc = "Toggle lsp_lines" })
+vim.keymap.set('n', '<A-b>', toggleLspLines, { desc = "Toggle lsp_lines" })
