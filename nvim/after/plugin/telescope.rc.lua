@@ -44,6 +44,7 @@ if not telescopeIgnore then telescopeIgnore = {} end
 table.insert(telescopeIgnore, '%.git[/\\]')
 
 local fb_actions = require("telescope").extensions.file_browser.actions
+local fb_utils = require("telescope._extensions.file_browser.utils")
 
 telescope.setup {
 	defaults = {
@@ -74,7 +75,33 @@ telescope.setup {
 					["h"] = fb_actions.goto_parent_dir,
 					["/"] = function()
 						vim.cmd('startinsert')
-					end
+					end,
+          ["<C-r>"] = function(d)
+            local selected = fb_utils.get_selected_files(d, false)
+            local folders = {}
+            for _, s in ipairs(selected) do
+              table.insert(folders, s:absolute())
+            end
+            builtin.live_grep({
+              search_dirs = folders,
+            })
+          end,
+          ["<C-R>"] = function(d)
+            local selected = fb_utils.get_selected_files(d, false)
+            local folders = {}
+            for _, s in ipairs(selected) do
+              table.insert(folders, s:absolute())
+            end
+            vim.ui.input({
+              prompt = 'File Type',
+              default = ''
+            }, function (input)
+              builtin.live_grep({
+                search_dirs = folders,
+                type_filter = input
+              })
+            end)
+          end
 				},
 			},
 		},
@@ -96,6 +123,7 @@ function()
 	})
 end)
 vim.keymap.set('n', ';b', builtin.buffers)
+vim.keymap.set('n', '<C-a>', builtin.buffers)
 vim.keymap.set('n', ';ch', builtin.command_history)
 vim.keymap.set('n', ';cl', builtin.commands)
 vim.keymap.set('n', ';cbff', builtin.current_buffer_fuzzy_find)
