@@ -86,7 +86,7 @@ telescope.setup {
               search_dirs = folders,
             })
           end,
-          ["<C-R>"] = function(d)
+          ["<C-A-r>"] = function(d)
             local selected = fb_utils.get_selected_files(d, false)
             local folders = {}
             for _, s in ipairs(selected) do
