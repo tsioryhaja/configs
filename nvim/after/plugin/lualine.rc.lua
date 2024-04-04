@@ -33,7 +33,8 @@ lualine.setup {
 		theme = theme,
 		-- section_separators = { left = '', right = '' },
 		component_separator = { left = '', right = '' },
-		section_separators = { left = '', right = '' },
+		-- section_separators = { left = '', right = '' },
+    section_separators = '';
 		-- component_separator = { left = '\\', right = '/' },
 		disabled_filetypes = {}
 	},

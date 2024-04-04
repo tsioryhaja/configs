@@ -11,6 +11,7 @@ vim.cmd "filetype on"
 vim.cmd'au BufNewFile,BufRead Jenkinsfile setf groovy'
 vim.cmd'au BufNewFile,BufRead *.coffee set filetype=coffee'
 vim.cmd':set signcolumn=yes:2'
+vim.cmd':set relativenumber'
 
 require("plugins")
 require("maps")

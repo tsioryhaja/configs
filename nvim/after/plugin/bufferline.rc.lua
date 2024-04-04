@@ -93,6 +93,7 @@ vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
 vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
 vim.keymap.set('n', '<A-j>', '<Cmd>m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Cmd>m .-2<CR>')
+vim.keymap.set('n', '<C-n>', '<Cmd>set rnu!<CR>')
 vim.keymap.set('n', '<C-A-h>', '<Cmd>tabm -1<CR>')
 vim.keymap.set('n', '<C-A-l>', '<Cmd>tabm +1<CR>')
 
