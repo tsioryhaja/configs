@@ -19,3 +19,5 @@ require("execute")
 SetEnvs()
 require("executor.cmd")
 vim.cmd ":set nofixendofline"
+
+require('local_utils.intro')
