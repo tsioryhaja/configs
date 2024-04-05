@@ -21,3 +21,6 @@ require("executor.cmd")
 vim.cmd ":set nofixendofline"
 
 require('local_utils.intro')
+
+
+-- local home_folder = vim.env.HOME
