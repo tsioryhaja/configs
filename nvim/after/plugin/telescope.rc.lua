@@ -2,49 +2,20 @@ local status, telescope = pcall(require, "telescope")
 if (not status) then return end
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
+local action_state = require('telescope.actions.state')
+
+require('local_utils.telescope')
+require('local_utils.workspace')
 
 local function telescope_buffer_dir()
 	return vim.fn.expand('%:p:h')
 end
 
-load_config = function()
-	file = io.open('.telescope.json','r')
-	content = nil
-	if file then
-		c = file:read('*a')
-		content = vim.json.decode(c)
-	end
-	return content
-end
-
-get_config = function(name)
-	value = nil
-	config = load_config()
-	if config then
-		value = config[name]
-	end
-	return value
-end
-
-local telescopeWorkspaceFolders = get_config("workspace-folders")
-if not telescopeWorkspaceFolders then
-  telescopeWorkspaceFolders = {}
-end
-telescopeWorkspaceFolders['current'] = vim.fn.getcwd()
-
-telescopeWorkspaceFoldersKeys = {}
-
-for key, val in pairs(telescopeWorkspaceFolders) do
-  table.insert(telescopeWorkspaceFoldersKeys, key)
-end
-
-local telescopeIgnore = get_config("ignore")
-if not telescopeIgnore then telescopeIgnore = {} end
-
-table.insert(telescopeIgnore, '%.git[/\\]')
 
 local fb_actions = require("telescope").extensions.file_browser.actions
 local fb_utils = require("telescope._extensions.file_browser.utils")
+
+local telescopeIgnore = GetTelescopeIgnoreConfig()
 
 telescope.setup {
 	defaults = {
@@ -101,6 +72,12 @@ telescope.setup {
                 type_filter = input
               })
             end)
+          end,
+          ['<C-w>'] = function(d)
+            local entry = action_state.get_selected_entry()
+            vim.ui.input({prompt = "Project name"}, function (input)
+              AddToWorkspace(input, entry.path)
+            end)
           end
 				},
 			},
@@ -113,9 +90,15 @@ telescope.load_extension("dap")
 
 vim.keymap.set('n', ';f',
 function()
+  -- local workspace = GetWorkspace()
+  -- local workspace_folders = {}
+  -- for _, val in pairs(workspace.map) do
+  --   table.insert(workspace_folders, val)
+  -- end
 	builtin.find_files({
 		no_ignore = false,
 		hidden = true,
+    -- search_dirs = workspace_folders,
     sorting_strategy = "ascending",
     layout_config = {
       prompt_position = 'top'
@@ -130,7 +113,14 @@ vim.keymap.set('n', ';cbff', builtin.current_buffer_fuzzy_find)
 vim.keymap.set('n', ';cbt', builtin.current_buffer_tags)
 
 vim.keymap.set('n', ';r', function()
-	builtin.live_grep()
+  local workspace = GetWorkspace()
+  local workspace_folders = {}
+  for _, val in pairs(workspace.map) do
+    table.insert(workspace_folders, val)
+  end
+	builtin.live_grep({
+    search_dirs = workspace_folders
+  })
 end)
 vim.keymap.set('n', '\\\\', function()
 	builtin.buffers()
@@ -162,35 +152,20 @@ end)
 
 local customSearchFileG = ""
 
-local function searchFileSpecificFolder()
-  vim.ui.input({
-    prompt = "Location :",
-    default = customSearchFileG,
-    completion = "file"
-  }, function (input)
-    --if input == '' then
-      --input = customSearchFile
-    --end
-    customSearchFileG = input
-    builtin.find_files({
-      no_ignore = false,
-      hidden = true,
-      cwd = customSearchFileG
-    })
-  end)
-end
 
 -- telescope.load_extension("ui-select")
 
 local function searchFileSpecificFolderSelect()
-  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+  local workspace = GetWorkspace()
+  vim.ui.select(workspace.keys, {
     prompt = "Project :",
   }, function (input)
-    local customSearchFile = telescopeWorkspaceFolders[input]
+    local customSearchFile = workspace.map[input]
     builtin.find_files({
       no_ignore = false,
       hidden = true,
       cwd = customSearchFile,
+      -- search_dirs = workspace_folders,
       respect_gitignore = true,
       grouped = true,
       initial_mode = "normal",
@@ -206,10 +181,11 @@ end)
 
 
 local function navigateFileWorkspace()
-  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+  local workspace = GetWorkspace()
+  vim.ui.select(workspace.keys, {
     prompt = "Project :"
   },function (input)
-    local customSearchFile = telescopeWorkspaceFolders[input]
+    local customSearchFile = workspace.map[input]
     telescope.extensions.file_browser.file_browser({
       path = customSearchFile,
     })
@@ -221,12 +197,13 @@ vim.keymap.set('n', "<A-w>", function()
 end)
 
 vim.keymap.set('n', "<A-g>", function()
+  local workspace = GetWorkspace()
   local search_term = ""
   local search_location = ""
-  vim.ui.select(telescopeWorkspaceFoldersKeys, {
+  vim.ui.select(workspace.keys, {
     prompt = "Project :"
   }, function(input)
-    search_location = telescopeWorkspaceFolders[input]
+    search_location = workspace.map[input]
     vim.ui.input({prompt = "Location :", completion = "file"}, function(input1)
       search_location = search_location .. '/' .. input1
       vim.ui.input({prompt = "Search :"}, function(input2)
