@@ -15,6 +15,9 @@ end
 
 function GetTelescopeIgnoreConfig()
   local telescopeConfig = GetTelescopeConfig('ignore')
+  if not telescopeConfig then
+    telescopeConfig = {}
+  end
   table.insert(telescopeConfig, '%.git[/\\]')
   return telescopeConfig
 end
