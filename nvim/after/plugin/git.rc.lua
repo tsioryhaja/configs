@@ -16,3 +16,9 @@ git.setup({
 		diff=";gd",
 	}
 })
+
+local st, vgit = pcall(require, 'vgit')
+
+if st then
+  vgit.setup()
+end
