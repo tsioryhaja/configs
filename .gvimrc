@@ -1,5 +1,5 @@
 syntax on
-colorscheme slate
-colorscheme nord
-colorscheme purify
+" colorscheme slate
+" colorscheme nord
+" colorscheme purify
 

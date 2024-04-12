@@ -55,12 +55,14 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap ;f :call fzf#run()<CR>
+
 nmap <A-h> :tabprev<CR>
 nmap <A-l> :tabnext<CR>
 
 nmap <C-n> :set rnu!<CR>
 
-colorscheme nord
+colorscheme purify
 
 syntax on
 
@@ -91,3 +93,4 @@ let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 
 set relativenumber
+
