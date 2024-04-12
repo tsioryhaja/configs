@@ -28,19 +28,19 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-pathogen'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'ggreer/the_silver_searcher'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'habamax/vim-godot'
 call plug#end()
 
-set pythonthreehome=C:\\Python38
-set pythonthreedll=python38.dll
+set pythonthreehome=C:\\Python310
+set pythonthreedll=python310.dll
 
-set pythonhome=C:\\Python27
-set pythondll=python27.dll
+set pythonhome=C:\\Python310
+set pythondll=python310.dll
 let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
-autocmd vimenter * NERDTree
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 let g:airline_powerline_fonts=1
@@ -55,16 +55,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap i <Up>
-nmap k <Down>
-nmap j <Left>
-nmap l <Right>
-nmap h <Insert>
-
-vmap i <Up>
-vmap k <Down>
-vmap j <Left>
-vmap l <Right>
+nmap <A-h> :tabprev<CR>
+nmap <A-l> :tabnext<CR>
 
 colorscheme nord
 
@@ -88,3 +80,10 @@ let g:godot_executable = 'C:/Godot/Godot.exe'
 
 imap <silent><expr> <Tab> pumvisible() ? "\<down>" : "\<Tab>"
 imap <silent><expr> <S-Tab> pumvisible() ? "\<up>" : "\<S-Tab>"
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
+
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
