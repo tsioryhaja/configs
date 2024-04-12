@@ -1,8 +1,9 @@
 set nocompatible
 filetype plugin on
-
+let $PATH="C:\\Program Files\\Git\\usr\\bin;" . $PATH
 let NERDTreeIgnore = ['\.pyv$']
-
+" full screen
+au GUIEnter * simalt ~n
 let g:go_highlight_types=1
 let g:go_highlight_fields=1
 let g:go_highlight_functions=1
@@ -23,7 +24,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-pathogen'
@@ -55,7 +56,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap ;f :call fzf#run()<CR>
+nmap ;f :Files<CR>
 
 nmap <A-h> :tabprev<CR>
 nmap <A-l> :tabnext<CR>
@@ -90,7 +91,8 @@ let g:airline_right_sep = ''
 
 
 let g:fzf_vim = {}
-let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']
 
 set relativenumber
-
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'C:\\Users\\tsiory_re\\vimfiles\\bundle\\fzf.vim\\bin\\preview.sh {}']}, <bang>1)
