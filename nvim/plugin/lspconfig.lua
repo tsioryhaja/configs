@@ -14,10 +14,10 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true }
 
 	-- buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', ';gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap('n', 'gv', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
   -- to go back from the ;gd use ctrl + o
-	buf_set_keymap('n', ';gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
 	buf_set_keymap('n', ';ge', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
@@ -156,7 +156,6 @@ nvim_lsp.gopls.setup {
 }
 
 if python_version == '2.7' then
-	print(python_version)
 	nvim_lsp.pyls.setup {
 		on_attach = on_attach,
 		capabilities=get_default_capabilities(),
@@ -192,6 +191,7 @@ nvim_lsp.asm_lsp.setup {
 nvim_lsp.angularls.setup {
 	on_attach=on_attach,
 	capabilities=get_default_capabilities(),
+  cmd = { 'node', './node_modules/@angular/language-server/index.js' }
 }
 
 nvim_lsp.coffeesense.setup {
@@ -214,13 +214,13 @@ nvim_lsp.efm.setup {
 		languages={
 			python={
 				{formatCommand="black --quiet -", formatStdin=true},
-        {
-          lintCommand="pylint --output-format text --score no --msg-template '{path}:{line}:{column}:{C}:{msg}'",
-          lintStdin=false,
-          lintFormats={'%f:%l:%c:%t:%m'},
-          lintOffsetColumns=1,
-          lintCategoryMap={I='H',R='I',C='I',W='W',E='E',F='E'}
-        }
+        -- {
+        --   lintCommand="pylint --output-format text --score no --msg-template '{path}:{line}:{column}:{C}:{msg}'",
+        --   lintStdin=false,
+        --   lintFormats={'%f:%l:%c:%t:%m'},
+        --   lintOffsetColumns=1,
+        --   lintCategoryMap={I='H',R='I',C='I',W='W',E='E',F='E'}
+        -- }
 			}
 		}
 	}
