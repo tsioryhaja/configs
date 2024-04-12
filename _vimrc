@@ -58,6 +58,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <A-h> :tabprev<CR>
 nmap <A-l> :tabnext<CR>
 
+nmap <C-n> :set rnu!<CR>
+
 colorscheme nord
 
 syntax on
@@ -87,3 +89,5 @@ let g:airline_right_sep = ''
 
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
+set relativenumber
