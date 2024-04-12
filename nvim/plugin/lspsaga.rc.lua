@@ -5,7 +5,14 @@ saga.setup {
   error_sign = "a",
 	server_filetype_map = {
 		typescript = 'typescript'
-	}
+	},
+  -- finder = {
+  --   filter = {
+  --     ['textDocument/definition'] = function (client_id, result) return true end,
+  --     ['textDocument/references'] = function (client_id, result) return true end,
+  --     ['textDocument/implementation'] = function (client_id, result) return true end,
+  --   }
+  -- }
 }
 
 
@@ -32,10 +39,11 @@ end
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
+vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.keymap.set('n', ';K', '<Cmd>Lspsaga hover_doc<CR>', opts)
 vim.keymap.set('n', 'gD', '<Cmd>Lspsaga finder<CR>', opts)
 vim.keymap.set('n', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
-vim.keymap.set('n', 'gp', '<Cmd>Lspsaga preview_definition<CR>', opts)
+vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 vim.keymap.set('n', 'gld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
 vim.keymap.set('n', ';ca', '<Cmd>Lspsaga code_action<CR>', opts)
