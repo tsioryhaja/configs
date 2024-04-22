@@ -112,6 +112,7 @@ vim.keymap.set('n', ';cl', builtin.commands)
 vim.keymap.set('n', ';cbff', builtin.current_buffer_fuzzy_find)
 vim.keymap.set('n', ';cbt', builtin.current_buffer_tags)
 
+
 vim.keymap.set('n', ';r', function()
   local workspace = GetWorkspace()
   local workspace_folders = {}
@@ -136,6 +137,8 @@ vim.keymap.set('n', ';e', function()
 end)
 vim.keymap.set('n', 'sf', '<Cmd>Telescope file_browser path=%:p:h<CR>')
 vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
+vim.keymap.set('n', ';ss', builtin.lsp_workspace_symbols)
+vim.keymap.set('n', ';sd', builtin.lsp_document_symbols)
 vim.keymap.set("n", "<A-f>", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
