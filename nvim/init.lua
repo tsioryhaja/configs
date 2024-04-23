@@ -6,6 +6,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors=true
 vim.opt.cursorline=true
 
+require('theme')
 
 vim.cmd "filetype on"
 vim.cmd'au BufNewFile,BufRead Jenkinsfile setf groovy'

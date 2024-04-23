@@ -16,77 +16,77 @@ bufferline.setup({
       return warning .. " " .. error
     end
 	},
-	highlights = {
-		separator = {
-			fg = '#5d5d5d',
-			bg = '#666666',
-		},
-		background = {
-			fg = '#fdf6e3',
-			bg = '#666666'
-		},
-		buffer_selected = {
-			fg = '#fdf6e3',
-			bold = true,
-		},
-		duplicate = {
-			bg = '#666666'
-		},
-		fill = {
-			bg = '#5d5d5d'
-		},
-    modified = {
-      bg = "#666666"
-    },
-    error = {
-      fg = "#f00a2c",
-      bg = "#666666"
-    },
-    error_visible = {
-      fg = "#f00a2c",
-      bg = "#666666"
-    },
-    error_diagnostic = {
-      fg = "#f00a2c",
-      bg = "#666666"
-    },
-    warning = {
-      fg = "#f5fc9f",
-      bg = "#666666"
-    },
-    warning_visible = {
-      fg = "#f5fc9f",
-      bg = "#666666"
-    },
-    warning_diagnostic = {
-      fg = "#f5fc9f",
-      bg = "#666666"
-    },
-    info = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-    info_visible = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-    info_diagnostic = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-    hint = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-    hint_visible = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-    hint_diagnostic = {
-      fg = "#215bb8",
-      bg = "#666666"
-    },
-	},
+	-- highlights = {
+	-- 	separator = {
+	-- 		fg = '#5d5d5d',
+	-- 		bg = '#666666',
+	-- 	},
+	-- 	background = {
+	-- 		fg = '#fdf6e3',
+	-- 		bg = '#666666'
+	-- 	},
+	-- 	buffer_selected = {
+	-- 		fg = '#fdf6e3',
+	-- 		bold = true,
+	-- 	},
+	-- 	duplicate = {
+	-- 		bg = '#666666'
+	-- 	},
+	-- 	fill = {
+	-- 		bg = '#5d5d5d'
+	-- 	},
+ --    modified = {
+ --      bg = "#666666"
+ --    },
+ --    error = {
+ --      fg = "#f00a2c",
+ --      bg = "#666666"
+ --    },
+ --    error_visible = {
+ --      fg = "#f00a2c",
+ --      bg = "#666666"
+ --    },
+ --    error_diagnostic = {
+ --      fg = "#f00a2c",
+ --      bg = "#666666"
+ --    },
+ --    warning = {
+ --      fg = "#f5fc9f",
+ --      bg = "#666666"
+ --    },
+ --    warning_visible = {
+ --      fg = "#f5fc9f",
+ --      bg = "#666666"
+ --    },
+ --    warning_diagnostic = {
+ --      fg = "#f5fc9f",
+ --      bg = "#666666"
+ --    },
+ --    info = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+ --    info_visible = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+ --    info_diagnostic = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+ --    hint = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+ --    hint_visible = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+ --    hint_diagnostic = {
+ --      fg = "#215bb8",
+ --      bg = "#666666"
+ --    },
+	-- },
 })
 
 vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')

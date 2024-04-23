@@ -41,6 +41,7 @@ require("packer").startup(
 --    use 'xiyaowong/nvim-transparent'
     use "sindrets/diffview.nvim"
     use "tanvirtin/vgit.nvim"
+    use "rebelot/kanagawa.nvim"
 	end
 )
 

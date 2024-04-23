@@ -9,6 +9,8 @@ require('dap_adapters.msvc')
 
 require('dap_adapters.configs')
 
+local home_folder = vim.env.HOME
+
 local load_config = function()
 	local file = io.open('.dap.json','r')
 	local content = nil
@@ -215,7 +217,7 @@ end
 dap.adapters.cppvsdbg = {
 	id='cppvsdbg',
 	type='executable',
-  command = 'C:\\Users\\tsior\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\vsdbg\\bin\\vsdbg.exe',
+  command = vim.env.HOME .. '\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\vsdbg\\bin\\vsdbg.exe',
   args = { "--interpreter=vscode" },
 	options = {
     externalTerminal = true,
@@ -324,6 +326,37 @@ vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''}
 vim.fn.sign_define('DapBreakpointRejected', {text='', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapBreakpointCondition', {text='', texthl='', linehl='', numhl=''})
 
+vim.api.nvim_create_user_command("DapSaveBreakpoints", function(ctx)
+  local breakpoints = require('dap.breakpoints').get()
+  local breakpoints_configs = {}
+  local n = 0
+  for i, bp in pairs(breakpoints) do
+    if bp ~= nil then
+      local bf = {
+        file = vim.api.nvim_buf_get_name(i),
+        breakpoints = bp
+      }
+      table.insert(breakpoints_configs, bf)
+    end
+  end
+  local filename = ctx.args or ".breakpoints.json"
+  local file = io.open(filename, 'w')
+  file:write(vim.json.encode({breakpoints = breakpoints_configs}))
+  file:close()
+end, {nargs="*"})
+
+-- vim.api.nvim_create_user_command("DapLoadBreakpoints", function (ctx)
+--   local file = io.open(ctx.args, "r")
+--   local d = file:read('*a')
+--   local contents = vim.json.decode(d)
+--   local cwd = vim.fn.getcwd()
+--   for i, content in pairs(contents) do
+--     local flnm = content.file
+--     if string.sub(flnm, 1, string.len(cwd)) == cwd then
+--       flnm = require('plenary')
+--     end
+--   end
+-- end, {nargs="*"})
 
 local status_dapui, dapui = pcall(require, 'dapui')
 if (not status_dapui) then return end
