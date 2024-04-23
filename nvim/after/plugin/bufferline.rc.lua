@@ -1,116 +1,28 @@
 local status, bufferline = pcall(require, "bufferline")
 if (not status) then return end
 
--- bufferline.setup({
--- 	options = {
--- 		mode = "tabs",
--- 		separator_style = 'thin',
--- 		always_show_bufferline = true,
--- 		show_buffer_close_icons = false,
--- 		show_close_icon = true,
--- 		color_iconss = true,
---     diagnostics = "nvim_lsp",
---     diagnostics_indicator = function (count, level, errors, ctx)
---       local error = level:match("error") and "  " .. count or ""
---       local warning = level:match("warning") and "  " .. count or ""
---       return warning .. " " .. error
---     end
--- 	},
--- 	-- highlights = {
--- 	-- 	separator = {
--- 	-- 		fg = '#5d5d5d',
--- 	-- 		bg = '#666666',
--- 	-- 	},
--- 	-- 	background = {
--- 	-- 		fg = '#fdf6e3',
--- 	-- 		bg = '#666666'
--- 	-- 	},
--- 	-- 	buffer_selected = {
--- 	-- 		fg = '#fdf6e3',
--- 	-- 		bold = true,
--- 	-- 	},
--- 	-- 	duplicate = {
--- 	-- 		bg = '#666666'
--- 	-- 	},
--- 	-- 	fill = {
--- 	-- 		bg = '#5d5d5d'
--- 	-- 	},
---  --    modified = {
---  --      bg = "#666666"
---  --    },
---  --    error = {
---  --      fg = "#f00a2c",
---  --      bg = "#666666"
---  --    },
---  --    error_visible = {
---  --      fg = "#f00a2c",
---  --      bg = "#666666"
---  --    },
---  --    error_diagnostic = {
---  --      fg = "#f00a2c",
---  --      bg = "#666666"
---  --    },
---  --    warning = {
---  --      fg = "#f5fc9f",
---  --      bg = "#666666"
---  --    },
---  --    warning_visible = {
---  --      fg = "#f5fc9f",
---  --      bg = "#666666"
---  --    },
---  --    warning_diagnostic = {
---  --      fg = "#f5fc9f",
---  --      bg = "#666666"
---  --    },
---  --    info = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
---  --    info_visible = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
---  --    info_diagnostic = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
---  --    hint = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
---  --    hint_visible = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
---  --    hint_diagnostic = {
---  --      fg = "#215bb8",
---  --      bg = "#666666"
---  --    },
--- 	-- },
--- })
+bufferline.setup{
+	options = {
+		mode = "tabs",
+		separator_style = 'thin',
+		always_show_bufferline = false,
+    auto_toggle_bufferline = true,
+		show_buffer_close_icons = false,
+		show_close_icon = true,
+		color_iconss = true,
+    diagnostics = "nvim_lsp",
+    diagnostics_indicator = function (count, level, errors, ctx)
+      local error = level:match("error") and "  " .. count or ""
+      local warning = level:match("warning") and "  " .. count or ""
+      return warning .. " " .. error
+    end,
+	},
+}
 
-function MyTabLine()
-  local s = ''
-  for i = 0, vim.fn.tabpagenr('$') do
-    if (i + 1) == vim.fn.tabpagenr() then
-      s = s .. "%#TabLineSel#"
-    else
-      s = s .. "%#TabLine#"
-    end
-    if (i + 1) <= vim.fn.tabpagenr('$') then
-      -- s = s .. "%" .. (i + 1) .."t"
-      -- s = s .. ' %{My} '
-    end
-  end
-  return s
-end
-
-vim.o.tabline = "%!v:lua.MyTabLine()"
-
--- vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
--- vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
-vim.keymap.set('n', '<A-l>', '<Cmd>tabp<CR>')
-vim.keymap.set('n', '<A-h>', '<Cmd>tabn<CR>')
+vim.keymap.set('n', '<A-l>', '<Cmd>BufferLineCycleNext<CR>')
+vim.keymap.set('n', '<A-h>', '<Cmd>BufferLineCyclePrev<CR>')
+-- vim.keymap.set('n', '<A-l>', '<Cmd>tabp<CR>')
+-- vim.keymap.set('n', '<A-h>', '<Cmd>tabn<CR>')
 vim.keymap.set('n', '<A-j>', '<Cmd>m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Cmd>m .-2<CR>')
 vim.keymap.set('n', '<C-n>', '<Cmd>set rnu!<CR>')
