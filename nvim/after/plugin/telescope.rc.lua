@@ -139,6 +139,12 @@ vim.keymap.set('n', 'sf', '<Cmd>Telescope file_browser path=%:p:h<CR>')
 vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
 vim.keymap.set('n', ';ss', builtin.lsp_workspace_symbols)
 vim.keymap.set('n', ';sd', builtin.lsp_document_symbols)
+-- vim.keymap.set('n', ';wss', function()
+--   vim.ui.input({prompt = 'Symbol'}, function(input)
+--     builtin.lsp_workspace_symbols({query = input})
+--   end)
+-- end)
+vim.keymap.set('n', ';wss', builtin.lsp_dynamic_workspace_symbols)
 vim.keymap.set("n", "<A-f>", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
