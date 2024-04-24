@@ -17,6 +17,8 @@ vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
 
 vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
+vim.keymap.set('n', 'bn', '<CMD>bnext<CR>')
+vim.keymap.set('n', 'bp', '<CMD>bprev<CR>')
 
 require("plugins")
 require("maps")
@@ -33,3 +35,5 @@ require('local_utils.intro')
 -- use marks in vim:
 --  'a : jump mark a line
 --  ma : set mark a to current line
+-- ee what<C-i> and <C-o> actually do when you code
+-- and learn to use ci too. for changin what's inside of a '' of () and anything
