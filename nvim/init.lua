@@ -37,3 +37,4 @@ require('local_utils.intro')
 --  ma : set mark a to current line
 -- ee what<C-i> and <C-o> actually do when you code
 -- and learn to use ci too. for changin what's inside of a '' of () and anything
+-- learn to use th i after the mode like vi( ci{ di"
