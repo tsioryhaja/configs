@@ -4,6 +4,9 @@ if (not status) then
 end
 
 kanagawa.setup{
+  -- theme = "wave",
+  -- theme = "dragon",
+  -- theme = "lotus",
   colors = {
     theme = {
       all = {
@@ -16,3 +19,5 @@ kanagawa.setup{
 }
 
 vim.cmd":colorscheme kanagawa-wave"
+-- vim.cmd":colorscheme kanagawa-dragon"
+-- vim.cmd":colorscheme kanagawa-lotus"
