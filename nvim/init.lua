@@ -17,8 +17,8 @@ vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
 
 vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
-vim.keymap.set('n', 'bn', '<CMD>bnext<CR>')
-vim.keymap.set('n', 'bp', '<CMD>bprev<CR>')
+vim.keymap.set('n', ';n', '<CMD>bnext<CR>')
+vim.keymap.set('n', ';p', '<CMD>bprev<CR>')
 
 require("plugins")
 require("maps")
