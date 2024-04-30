@@ -13,6 +13,7 @@ end
 
 
 local fb_actions = require("telescope").extensions.file_browser.actions
+local layout_actions = require('telescope.actions.layout')
 local fb_utils = require("telescope._extensions.file_browser.utils")
 
 local telescopeIgnore = GetTelescopeIgnoreConfig()
@@ -20,9 +21,12 @@ local telescopeIgnore = GetTelescopeIgnoreConfig()
 telescope.setup {
 	defaults = {
 		mappings = {
+      i = {
+        ["<C-p>"] = layout_actions.toggle_preview,
+      },
 			n = {
-				["q"] = actions.close
-
+				["q"] = actions.close,
+        ["<C-p>"] = layout_actions.toggle_preview,
 			},
 		},
 		file_ignore_patterns = telescopeIgnore
