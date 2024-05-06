@@ -1,0 +1,6 @@
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim\command]
+@="C:\\tools\\neovim\\nvim-win64\\bin\\nvim-qt.exe \"%1\""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim\command]
+@="C:\\tools\\neovim\\nvim-win64\\bin\\vim-qt.exe \"%1\""
