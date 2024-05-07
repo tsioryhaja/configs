@@ -16,7 +16,7 @@ vim.cmd':set signcolumn=yes:1'
 vim.cmd':set relativenumber'
 vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
--- vim.o.tabline = '%!v:lua.require\'tablines'.MyTabline()'
+-- vim.o.tabline = '%!v:lua.require\'tablines\'.MyTabline()'
 
 vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
 vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
