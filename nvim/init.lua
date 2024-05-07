@@ -7,6 +7,7 @@ vim.opt.termguicolors=true
 vim.opt.cursorline=true
 
 require('theme')
+-- require('tablines')
 
 vim.cmd "filetype on"
 vim.cmd'au BufNewFile,BufRead Jenkinsfile setf groovy'
@@ -15,10 +16,11 @@ vim.cmd':set signcolumn=yes:1'
 vim.cmd':set relativenumber'
 vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
+-- vim.o.tabline = '%!v:lua.require\'tablines'.MyTabline()'
 
 vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
-vim.keymap.set('n', ';n', '<CMD>bnext<CR>')
-vim.keymap.set('n', ';p', '<CMD>bprev<CR>')
+vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
+vim.keymap.set('n', '<A-i>', '<CMD>bprev<CR>')
 
 require("plugins")
 require("maps")
@@ -38,3 +40,4 @@ require('local_utils.intro')
 -- ee what<C-i> and <C-o> actually do when you code
 -- and learn to use ci too. for changin what's inside of a '' of () and anything
 -- learn to use th i after the mode like vi( ci{ di"
+-- learn to use the CTRL-6 command, it is better to master that than use harpoon

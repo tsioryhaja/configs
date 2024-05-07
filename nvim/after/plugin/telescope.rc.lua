@@ -109,7 +109,7 @@ function()
     }
 	})
 end)
-vim.keymap.set('n', ';b', builtin.buffers)
+vim.keymap.set('n', ';b', ':buffers<CR>')
 vim.keymap.set('n', '<C-a>', builtin.buffers)
 vim.keymap.set('n', ';ch', builtin.command_history)
 vim.keymap.set('n', ';cl', builtin.commands)
