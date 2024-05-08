@@ -39,4 +39,10 @@ M.MyTabline = function()
   return s
 end
 
+-- local bufs = vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded)local bufs = vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded)
+  -- if opts.sort_mru then
+  --   table.sort(bufnrs, function(a, b)
+  --     return vim.fn.getbufinfo(a)[1].lastused > vim.fn.getbufinfo(b)[1].lastused
+  --   end)
+  -- end
 return M
