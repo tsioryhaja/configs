@@ -18,6 +18,13 @@ vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
 -- vim.o.tabline = '%!v:lua.require\'tablines\'.MyTabline()'
 
+vim.keymap.set('n', '<A-^>', function ()
+  if vim.o.laststatus == 2 then
+    vim.o.laststatus = 1
+  else
+    vim.o.laststatus = 2
+  end
+end)
 vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
 vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
 vim.keymap.set('n', '<A-i>', '<CMD>bprev<CR>')
