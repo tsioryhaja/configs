@@ -72,3 +72,6 @@ end
 lsp_lines.toggle()
 
 vim.keymap.set('n', '<A-b>', toggleLspLines, { desc = "Toggle lsp_lines" })
+
+vim.cmd('smap <expr> <Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"')
+vim.cmd('smap <expr> <S-Tab> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-next)" : "<S-Tab>"')
