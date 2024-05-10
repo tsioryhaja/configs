@@ -34,6 +34,7 @@ cmp.setup(
 		{ name = 'nvim_lsp' },
 		{ name = 'vsnip' },
 		{ name = 'buffer' },
+    { name = 'nvim_lsp_signature_help' },
 	},
 	formatting = {
 		format = lspkind.cmp_format({with_text = false, maxwidth = 50})
@@ -75,3 +76,4 @@ vim.keymap.set('n', '<A-b>', toggleLspLines, { desc = "Toggle lsp_lines" })
 
 vim.cmd('smap <expr> <Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"')
 vim.cmd('smap <expr> <S-Tab> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-next)" : "<S-Tab>"')
+

@@ -7,10 +7,10 @@ require("packer").startup(
 		use 'hrsh7th/cmp-buffer'
 		use 'hrsh7th/nvim-cmp'
 		use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
 		use 'L3MON4D3/LuaSnip'
 		use 'onsails/lspkind-nvim'
     use 'ErichDonGubler/lsp_lines.nvim'
-    -- use 'whynothugo/lsp_lines.nvim'
 		use 'nvim-lualine/lualine.nvim'
     use 'nvim-tree/nvim-tree.lua'
 		use {
@@ -29,14 +29,14 @@ require("packer").startup(
 		use 'mfussenegger/nvim-dap'
 		use "rcarriga/nvim-dap-ui"
 		use 'nvim-telescope/telescope-dap.nvim'
-		use 'EdenEast/nightfox.nvim'
+		-- use 'EdenEast/nightfox.nvim'
 		use 'windwp/nvim-autopairs'
 		use 'dinhhuy258/git.nvim'
 		use 'stevearc/dressing.nvim'
     use 'gpanders/editorconfig.nvim'
     use 'kchmck/vim-coffee-script'
     use 'akinsho/git-conflict.nvim'
-    use 'Mofiqul/vscode.nvim'
+    -- use 'Mofiqul/vscode.nvim'
     use 'numToStr/Comment.nvim'
 --    use 'xiyaowong/nvim-transparent'
     use "sindrets/diffview.nvim"
