@@ -18,6 +18,16 @@ vim.cmd':set list listchars=tab:▏\\ ,trail:▏,precedes:▏,extends:▏'
 vim.cmd':set list!'
 -- vim.o.tabline = '%!v:lua.require\'tablines\'.MyTabline()'
 
+-- vim.keymap.set('n', '<C-x>', function ()
+--   vim.cmd("normal! `"..string.upper(vim.fn.nr2char(vim.fn.getchar()))..'`"')
+-- end)
+
+vim.cmd':nmap <silent> <C-x> :execute " normal! `".toupper(nr2char(getchar()))."`\\""<cr>'
+if vim.fn.has('windows') then
+  vim.cmd':set undodir=C:\\tools\\neovim\\.undodir'
+  vim.cmd':set undofile'
+end
+
 vim.keymap.set('n', '<A-^>', function ()
   if vim.o.laststatus == 2 then
     vim.o.laststatus = 1

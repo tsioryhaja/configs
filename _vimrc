@@ -63,6 +63,8 @@ nmap <A-l> :tabnext<CR>
 
 nmap <C-n> :set rnu!<CR>
 
+nmap <silent> <C-x> :execute "normal! `".toupper(nr2char(getchar()))."`\""<cr>
+
 colorscheme purify
 
 syntax on
