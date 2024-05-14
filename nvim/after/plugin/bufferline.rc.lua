@@ -6,17 +6,21 @@ bufferline.setup{
 		mode = "tabs",
     modified_icon = "[+]",
 		separator_style = 'thin',
+    truncate_names = false,
 		always_show_bufferline = false,
     auto_toggle_bufferline = true,
+    show_buffer_icons = false,
 		show_buffer_close_icons = false,
 		show_close_icon = true,
 		color_iconss = true,
-    diagnostics = "nvim_lsp",
-    diagnostics_indicator = function (count, level, errors, ctx)
-      local error = level:match("error") and "  " .. count or ""
-      local warning = level:match("warning") and "  " .. count or ""
-      return warning .. " " .. error
-    end,
+    diagnostics = false,
+    enforce_regular_tabs = false,
+    tab_size = 5,
+    -- diagnostics_indicator = function (count, level, errors, ctx)
+    --   local error = level:match("error") and "  " .. count or ""
+    --   local warning = level:match("warning") and "  " .. count or ""
+    --   return warning .. " " .. error
+    -- end,
 	},
 }
 
