@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
 
 	buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 
-  buf_set_keymap('n', 'bf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
+  buf_set_keymap('n', ';bf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 load_config = function()
