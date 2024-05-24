@@ -21,3 +21,19 @@ kanagawa.setup{
 vim.cmd":colorscheme kanagawa-wave"
 -- vim.cmd":colorscheme kanagawa-dragon"
 -- vim.cmd":colorscheme kanagawa-lotus"
+
+-- local ubuntuSelect = '#77216F'
+-- local ubuntuSelect = '#5E2750'
+-- local greySelect = 'grey40'
+-- local darkGrey = '#333333'
+--
+--
+-- vim.cmd':hi Pmenu guibg=none'
+-- vim.cmd(':hi CursorLine guibg='..ubuntuSelect)
+-- vim.cmd(':hi TelescopePreviewLine guibg='..ubuntuSelect)
+-- vim.cmd(':hi TelescopeSelection guibg='..ubuntuSelect)
+-- vim.cmd(':hi Visual guibg='..ubuntuSelect)
+
+-- ubuntu colorscheme origin
+-- https://design.ubuntu.com/brand/colour-palette
+-- https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
