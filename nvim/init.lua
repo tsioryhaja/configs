@@ -23,6 +23,7 @@ vim.cmd':set list!'
 -- end)
 
 vim.cmd':nmap <silent> <C-x> :execute " normal! `".toupper(nr2char(getchar()))."`\\""<cr>'
+vim.cmd':nmap <silent> ;w :w<cr>'
 if vim.fn.has('windows') then
   vim.cmd':set undodir=C:\\tools\\neovim\\.undodir'
   vim.cmd':set undofile'
