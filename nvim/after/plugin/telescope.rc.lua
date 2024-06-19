@@ -1,5 +1,6 @@
 local status, telescope = pcall(require, "telescope")
 if (not status) then return end
+
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local action_state = require('telescope.actions.state')
@@ -27,6 +28,9 @@ telescope.setup {
 			n = {
 				["q"] = actions.close,
         ["<C-p>"] = layout_actions.toggle_preview,
+        [";a"] = function ()
+          print(vim.json.encode(action_state.get_selected_entry()))
+        end
 			},
 		},
 		file_ignore_patterns = telescopeIgnore
@@ -210,6 +214,11 @@ end
 vim.keymap.set('n', "<A-w>", function()
   navigateFileWorkspace()
 end)
+
+vim.api.nvim_create_user_command('MyGitStatus', function()
+  -- GetGitStatus(true)
+  builtin.git_status()
+end, {})
 
 vim.keymap.set('n', "<A-g>", function()
   local workspace = GetWorkspace()
