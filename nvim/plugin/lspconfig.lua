@@ -5,6 +5,7 @@ if (not status) then return end
 local protocol = require('vim.lsp.protocol')
 
 local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -75,12 +76,15 @@ protocol.CompletionItemKind = {
   '', -- TypeParameter
 }
 
+
 local function get_default_capabilities()
+  local capabilities = nil
 	if require('cmp_nvim_lsp').default_capabilities == nil then
-		return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+		capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	else
-		return require('cmp_nvim_lsp').default_capabilities()
-	end	
+		capabilities = require('cmp_nvim_lsp').default_capabilities()
+	end
+  return capabilities
 end
 
 local capabilities = get_default_capabilities()

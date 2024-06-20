@@ -18,7 +18,37 @@ end
 
 theme.normal.a.bg = colors.white
 theme.normal.a.fg = colors.dark_grey
-theme.normal.b.fg = colors.white
+-- theme.normal.b.fg = colors.white
+
+theme.normal.b.bg = nil
+theme.normal.b.fg = nil
+theme.normal.c.bg = nil
+theme.normal.c.fg = nil
+
+theme.visual.b.bg = nil
+theme.visual.b.fg = nil
+theme.visual.c.bg = nil
+theme.visual.c.fg = nil
+
+theme.replace.b.bg = nil
+theme.replace.b.fg = nil
+theme.replace.c.bg = nil
+theme.replace.c.fg = nil
+
+theme.insert.b.bg = nil
+theme.insert.b.fg = nil
+theme.insert.c.bg = nil
+theme.insert.c.fg = nil
+
+theme.command.b.bg = nil
+theme.command.b.fg = nil
+theme.command.c.bg = nil
+theme.command.c.fg = nil
+
+theme.inactive.b.bg = nil
+theme.inactive.b.fg = nil
+theme.inactive.c.bg = nil
+theme.inactive.c.fg = nil
 
 -- theme.insert.a.fg = colors.white
 -- theme.insert.a.bg = colors.light_grey
