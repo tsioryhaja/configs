@@ -12,12 +12,13 @@ require("packer").startup(
 		use 'onsails/lspkind-nvim'
     use 'ErichDonGubler/lsp_lines.nvim'
 		use 'nvim-lualine/lualine.nvim'
-    use 'nvim-tree/nvim-tree.lua'
+    -- use 'nvim-tree/nvim-tree.lua'
 		use {
 			'nvim-telescope/telescope.nvim',
 			requires = {'nvim-lua/plenary.nvim' }
 		}
 		use 'nvim-telescope/telescope-file-browser.nvim'
+    use 'nvim-treesitter/nvim-treesitter'
     -- use 'nvim-telescope/telescope-ui-select.nvim'
 		use 'kyazdani42/nvim-web-devicons'
 		use 'akinsho/bufferline.nvim'
