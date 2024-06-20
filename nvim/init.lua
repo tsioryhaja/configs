@@ -23,11 +23,11 @@ vim.cmd':set list!'
 -- end)
 
 vim.cmd':nmap <silent> <C-x> :execute " normal! `".toupper(nr2char(getchar()))."`\\""<cr>'
-vim.cmd':nmap <silent> ;w :w<cr>'
-if vim.fn.has('windows') then
-  vim.cmd':set undodir=C:\\tools\\neovim\\.undodir'
-  vim.cmd':set undofile'
-end
+-- vim.cmd':nmap <silent> ;w :w<cr>'
+-- if vim.fn.has('windows') then
+--   vim.cmd':set undodir=C:\\tools\\neovim\\.undodir'
+--   vim.cmd':set undofile'
+-- end
 
 vim.keymap.set('n', '<A-^>', function ()
   if vim.o.laststatus == 2 then
@@ -59,3 +59,9 @@ require('local_utils.intro')
 -- and learn to use ci too. for changin what's inside of a '' of () and anything
 -- learn to use th i after the mode like vi( ci{ di"
 -- learn to use the CTRL-6 command, it is better to master that than use harpoon
+-- on telescope when searching file use CTRL + q to move it to a quickfix window
+-- you can use cdo to to execute soem action on each occurence on the quick fix
+-- learn some quickfix command to manage some easy tricks with :cn to go to next thing in the list, :cp to go to previos and every thing
+-- next :cdo for an action in aoo of the line quickly
+-- example :cdo s/main/Main/gc
+-- :cdo is really awsome and the gc at the end of the search and replace is also really awsome
