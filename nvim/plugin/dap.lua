@@ -3,11 +3,16 @@ if (not status) then return end
 
 local utils = require('dap.utils')
 
+
 local rpc = require('dap.rpc')
 
 require('dap_adapters.msvc')
 
+require('dap_adapters.python')
+
 require('dap_adapters.configs')
+
+dap.listeners.before['event_debugpySockets'] = {DebugpySocketsHandler}
 
 local home_folder = vim.env.HOME
 
@@ -38,11 +43,13 @@ local get_config_or_ask = function(name, asked)
 	return value
 end
 
-
 dap.adapters.python = {
 	type = 'executable';
 	command = 'python';
 	args = {'-m', 'debugpy.adapter'};
+	options = {
+    source_filetype = 'python',
+	},
 }
 
 dap.adapters.python_remote = {

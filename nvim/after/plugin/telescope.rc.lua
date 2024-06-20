@@ -1,9 +1,10 @@
 local status, telescope = pcall(require, "telescope")
 if (not status) then return end
+
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local action_state = require('telescope.actions.state')
-
+local utils = require('telescope.utils')
 require('local_utils.telescope')
 require('local_utils.workspace')
 
@@ -27,6 +28,20 @@ telescope.setup {
 			n = {
 				["q"] = actions.close,
         ["<C-p>"] = layout_actions.toggle_preview,
+        [";r"] = function (prompt_bufnr)
+          local cwd = action_state.get_current_picker(prompt_bufnr).cwd
+          local selection = action_state.get_selected_entry()
+          if selection == nil then
+            utils.__warn_no_selection "no selection"
+            return
+          end
+          if selection.status:sub(2) == " " then
+            utils.__warn_no_selection "staged modification"
+          else
+            utils.get_os_command_output({ "git", "checkout", "--", selection.value }, cwd)
+            action_state.get_current_picker(prompt_bufnr):find()
+          end
+        end
 			},
 		},
 		file_ignore_patterns = telescopeIgnore
@@ -210,6 +225,11 @@ end
 vim.keymap.set('n', "<A-w>", function()
   navigateFileWorkspace()
 end)
+
+vim.api.nvim_create_user_command('GitStatus', function()
+  -- GetGitStatus(true)
+  builtin.git_status()
+end, {})
 
 vim.keymap.set('n', "<A-g>", function()
   local workspace = GetWorkspace()
