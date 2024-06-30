@@ -49,6 +49,8 @@ vim.cmd ":set nofixendofline"
 
 require('local_utils.intro')
 
+vim.cmd":silent! colorscheme vim"
+
 -- to duplicate row use :t.<CR>
 
 -- local home_folder = vim.env.HOME
