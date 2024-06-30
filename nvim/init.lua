@@ -47,9 +47,9 @@ SetEnvs()
 require("executor.cmd")
 vim.cmd ":set nofixendofline"
 
-require('local_utils.intro')
-
 vim.cmd":silent! colorscheme vim"
+
+require('local_utils.intro')
 
 -- to duplicate row use :t.<CR>
 
