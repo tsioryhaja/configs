@@ -10,16 +10,7 @@ local colors = {
   red   = '#f07178',
 }
 
-local theme_status, theme = pcall(require, "lualine.themes.kanagawa")
-if (not theme_status) then
-  theme = require('lualine.themes.gruvbox_dark')
-end
-
-
-theme.normal.a.bg = colors.white
-theme.normal.a.fg = colors.dark_grey
--- theme.normal.b.fg = colors.white
-
+local theme = require('lualine.themes.gruvbox_dark')
 theme.normal.b.bg = nil
 theme.normal.b.fg = nil
 theme.normal.c.bg = nil
@@ -50,13 +41,8 @@ theme.inactive.b.fg = nil
 theme.inactive.c.bg = nil
 theme.inactive.c.fg = nil
 
--- theme.insert.a.fg = colors.white
--- theme.insert.a.bg = colors.light_grey
--- theme.visual.a.fg = colors.white
--- theme.visual.a.bg = colors.light_grey
--- theme.command.a.fg = colors.white
--- theme.command.a.bg = colors.light_grey
--- local theme = {
+theme.normal.a.bg = colors.white
+theme.normal.a.fg = colors.dark_grey
 
 lualine.setup {
 	options = {
