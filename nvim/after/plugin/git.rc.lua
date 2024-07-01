@@ -17,8 +17,8 @@ git.setup({
 	}
 })
 
-local st, vgit = pcall(require, 'vgit')
-
-if st then
-  vgit.setup()
-end
+-- local st, vgit = pcall(require, 'vgit')
+--
+-- if st then
+--   vgit.setup()
+-- end

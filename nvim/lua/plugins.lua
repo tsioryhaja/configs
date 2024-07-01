@@ -41,7 +41,7 @@ require("packer").startup(
     use 'numToStr/Comment.nvim'
 --    use 'xiyaowong/nvim-transparent'
     use "sindrets/diffview.nvim"
-    use "tanvirtin/vgit.nvim"
+    -- use "tanvirtin/vgit.nvim"
     use "rebelot/kanagawa.nvim"
 	end
 )
