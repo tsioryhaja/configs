@@ -1,4 +1,5 @@
 set nocompatible
+set hidden
 set guioptions-=e
 filetype plugin on
 let $PATH="C:\\Program Files\\Git\\usr\\bin;" . $PATH
@@ -43,17 +44,23 @@ Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'tpope/vim-commentary'
 call plug#end()
-let g:lightline = { 'colorscheme': 'one', 'background': 'dark' }
+let g:lightline = { 'colorscheme': 'default', 'background': 'dark' }
 let g:lightline.enable = {
       \ 'statusline': 1,
       \ 'tabline': 1 }
-let g:lightline.tabline = {
-      \ 'left': [ [ 'tabs' ] ],
-      \ 'right': [ [ 'close' ] ] }
+" let g:lightline.tabline = {
+"       \ 'left': [ [ 'tabs' ] ],
+"       \ 'right': [ [ 'close' ] ] }
 
 let g:lightline.tab = {
       \ 'active': [ 'filename', 'modified' ] }
+
+let g:lightline.component = {
+			\ 'filename': '%f' }
 
 set pythonthreehome=C:\\Python310
 set pythonthreedll=python310.dll
@@ -61,7 +68,6 @@ set pythonthreedll=python310.dll
 set pythonhome=C:\\Python310
 set pythondll=python310.dll
 let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 " let g:airline_powerline_fonts=1
 " let g:airline#extensions#tabline#enabled=1
@@ -117,10 +123,6 @@ let g:godot_executable = 'C:/Godot/Godot.exe'
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-let g:airline_powerline_fonts = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
 
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']

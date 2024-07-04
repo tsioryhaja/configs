@@ -67,3 +67,7 @@ require('local_utils.intro')
 -- next :cdo for an action in aoo of the line quickly
 -- example :cdo s/main/Main/gc
 -- :cdo is really awsome and the gc at the end of the search and replace is also really awsome
+--
+-- search \(.*\) is the way to select everything
+--
+-- in search \1 to get the first selected 

@@ -5,6 +5,10 @@ if not cmp then
   return
 end
 
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 cmp.setup(
 {
 	snippet = {
@@ -28,7 +32,14 @@ cmp.setup(
 			else
 				fallback()
 			end
-		end
+		end,
+    ['<C-z>'] = function()
+      print('here')
+      if vim.fn['vsnip#available'](1) == 1 then
+        print('starting feeding key')
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      end
+    end
 	},
 	sources = {
 		{ name = 'nvim_lsp' },
