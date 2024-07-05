@@ -129,7 +129,7 @@ let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']
 
 set relativenumber
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'C:\\Users\\tsiory_re\\vimfiles\\bundle\\fzf.vim\\bin\\preview.sh {}']}, <bang>1)
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '"C:\Program Files\Git\usr\bin\bash.exe" C:\\Users\\tsior\\vimfiles\\plugged\\fzf.vim\\bin\\preview.sh {}']}, <bang>1)
 
 let g:display_virtual_text_diag = 1
 
