@@ -7,6 +7,8 @@ vim.opt.termguicolors=true
 vim.opt.cursorline=false
 
 require('theme')
+require('local_utils.configs')
+SetDefaultLocation()
 -- require('tablines')
 
 vim.cmd "filetype on"

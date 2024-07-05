@@ -128,19 +128,19 @@ dap.adapters.godot = {
 dap.adapters.firefox = {
 	type = 'executable',
 	command = 'node',
-	args = {'C:/vimdebugadapter/vscode-firefox-debug/dist/adapter.bundle.js'}
+	args = {DebugPaths['firefox']}
 }
 
 dap.adapters.chrome = {
 	type = "executable",
 	command = "node",
-	args = {'C:/vimdebugadapter/vscode-chrome-debug/out/src/chromeDebug.js'}
+	args = {DebugPaths['chrome']}
 }
 
 dap.adapters.node2 = {
 	type = 'executable',
 	command = 'node',
-	args = {'C:/vimdebugadapter/vscode-node-debug2/out/src/nodeDebug.js'}
+	args = {DebugPaths['node']}
 }
 
 dap.configurations.gdscript = {
@@ -204,7 +204,7 @@ dap.adapters.cppdbg = {
 	-- command = 'C:\\Users\\tsiory_re\\projects\\opensource\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
   -- command = 'C:\\debugadapter\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
   command = 'powershell',
-  args = { '/c', 'C:\\Users\\tsiory_re\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe' },
+  args = { '/c', DebugPaths['cppdbg'] },
 	-- command = 'C:\\vimdebugadapter\\ms-vscode.cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
 	options = {
 		detached = false,
@@ -224,7 +224,7 @@ end
 dap.adapters.cppvsdbg = {
 	id='cppvsdbg',
 	type='executable',
-  command = vim.env.HOME .. '\\.vscode\\extensions\\ms-vscode.cpptools-1.18.5-win32-x64\\debugAdapters\\vsdbg\\bin\\vsdbg.exe',
+  command = DebugPaths['vsdbg'],
   args = { "--interpreter=vscode" },
 	options = {
     externalTerminal = true,
@@ -283,6 +283,10 @@ end)
 vim.keymap.set('n', ';ds', function()
 	require('dap').continue()
 end)
+
+vim.api.nvim_create_user_command("DapRun", function ()
+	require('dap').continue()
+end, {})
 
 vim.keymap.set('n', '<F9>', function()
 	require('dap').toggle_breakpoint()

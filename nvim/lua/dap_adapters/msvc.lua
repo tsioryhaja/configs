@@ -1,4 +1,5 @@
 local dap = require('dap')
+require('local_utils.configs')
 
 local uv = vim.loop
 
@@ -12,7 +13,8 @@ local function send_payload(client, payload)
 end
 
 function RunHandshake(self, request_payload)
-  local signResult = io.popen('node C:\\debugadapter\\vsdbgsignature\\sign.js ' .. request_payload.arguments.value)
+  local sign_file_location = PathJoin({DebugAdapterLocation, "vsdbgsignature", "sign.js"})
+  local signResult = io.popen('node ' .. sign_file_location .. ' ' .. request_payload.arguments.value)
   if signResult == nil then
     utils.notify('error while signing handshake', vim.log.levels.ERROR)
     return
@@ -32,35 +34,3 @@ function RunHandshake(self, request_payload)
   send_payload(self.client, response)
 end
 
-function RunInTerminal(lsession, request)
-  local body = request.arguments
-  -- local settings = dap.defaults[lsession.config.type]
-  local terminal = {
-    command = "cmd.exe",
-    args = {'/c'}
-  }
-  local full_args = {}
-  vim.list_extend(full_args, terminal.args)
-  vim.list_extend(full_args, body.args)
-  local f = io.open('C:\\Projects\\val2.json', 'r')
-  local envs = vim.json.decode(f:read())
-  f:close()
-  local opts = {
-    args = full_args,
-    detached = true,
-    verbatim = true,
-    env = envs,
-  }
-  handle, pid = uv.spawn(terminal.command, opts, function(code)
-    if handle then
-      handle:close()
-    end
-    if code ~= 0 then
-      utils.notify(string.format('Terminal exited %d running %s %s', code, terminal.command, table.concat(full_args, ' ')), vim.log.levels.ERROR)
-    end
-  end)
-  lsession:response(request, {
-    success = handle ~= nil;
-    body = { processId = pid; };
-  })
-end

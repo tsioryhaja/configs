@@ -1,3 +1,5 @@
+require('local_utils.configs')
+
 local uv = vim.loop
 
 local function getParams(config)
@@ -47,8 +49,9 @@ function DebugpySocketsHandler(session, body)
       session.debugpy_connected_ports = {}
     end
     if port > 0 and not table_contains(session.debugpy_connected_ports, port) then
+      local launcher_location = PathJoin({UserHome, ".vscode", "extensions", "ms-python.debugpy-2024.6.0-win32-x64", "bundled", "libs", "debugpy", "launcher"})
       local opts = {
-        "C:\\Users\\tsiory_re\\.vscode\\extensions\\ms-python.debugpy-2024.6.0-win32-x64\\bundled\\libs\\debugpy\\launcher",
+        launcher_location,
         -- "-m",
         -- "debugpy.launcher",
         tostring(port),
