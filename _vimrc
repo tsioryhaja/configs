@@ -2,7 +2,6 @@ set nocompatible
 set hidden
 set guioptions-=e
 filetype plugin on
-let $PATH="C:\\Program Files\\Git\\usr\\bin;" . $PATH
 let NERDTreeIgnore = ['\.pyv$']
 " full screen
 au GUIEnter * simalt ~n
@@ -62,11 +61,11 @@ let g:lightline.tab = {
 let g:lightline.component = {
 			\ 'filename': '%f' }
 
-set pythonthreehome=C:\\Python310
-set pythonthreedll=python310.dll
-
-set pythonhome=C:\\Python310
-set pythondll=python310.dll
+" set pythonthreehome=C:\\Python310
+" set pythonthreedll=python310.dll
+"
+" set pythonhome=C:\\Python310
+" set pythondll=python310.dll
 let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
 
 " let g:airline_powerline_fonts=1
@@ -98,11 +97,9 @@ nmap <C-n> :set rnu!<CR>
 
 nmap <silent> <C-x> :execute "normal! `".toupper(nr2char(getchar()))."`\""<cr>
 
-" colorscheme purify
-
 syntax on
 
-set t_Co=256
+" set t_Co=256
 set encoding=utf-8
 set mouse=a
 
@@ -173,6 +170,5 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-colorscheme retrobox
 let &t_SI="\e[6 q"
 let &t_EI="\e[2 q"
