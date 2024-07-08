@@ -73,3 +73,5 @@ require('local_utils.intro')
 -- search \(.*\) is the way to select everything
 --
 -- in search \1 to get the first selected 
+-- 
+-- telescope scroll on preview <C-d> and <C-u>
