@@ -47,7 +47,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
 call plug#end()
-let g:lightline = { 'colorscheme': 'default', 'background': 'dark' }
+let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
       \ 'statusline': 1,
       \ 'tabline': 1 }
