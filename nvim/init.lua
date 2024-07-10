@@ -51,7 +51,9 @@ vim.cmd ":set nofixendofline"
 
 vim.cmd":silent! colorscheme vim"
 
-require('local_utils.intro')
+vim.g.loaded_python3_provider=0
+
+-- require('local_utils.intro')
 
 -- to duplicate row use :t.<CR>
 
