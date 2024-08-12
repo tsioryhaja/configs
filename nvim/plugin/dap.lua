@@ -221,6 +221,41 @@ local function run_in_terminal(self, payload)
   utils.notify(vim.json.encode(payload))
 end
 
+dap.adapters.coreclr = {
+  id='coreclr',
+  type='executable',
+  command='C:\\Users\\tsior\\.vscode\\extensions\\ms-dotnettools.csharp-2.39.29-win32-x64\\.debugger\\x86_64\\vsdbg-ui.exe',
+  args={ '--interpreter=vscode' },
+  options={
+    externalTerminal = true,
+  },
+  runInTerminal=true,
+  reverse_request_handlers={
+    handshake=RunHandshake,
+  },
+}
+
+dap.configurations.cs = {
+  {
+    name="Try coreclr",
+    type="coreclr",
+    request="launch",
+    program=function ()
+      -- return vim.fn.input('Path: ', vim.fn.getcwd() .. '\\bin\\Debug\\net7.0\\test.exe', 'file')
+      return vim.fn.input('Path: ', vim.fn.getcwd() .. 'src\\MvcSample\\bin\\Debug\\netcoreapp2.2\\MvcSample.dll', 'file')
+    end,
+    cwd = vim.fn.getcwd(),
+    clientID = 'vscode',
+    clientName = 'Visual Studio Code',
+    externalTerminal = true,
+    columnsStartAt1 = true,
+    linesStartAt1 = true,
+    locale = "en",
+    pathFormat = "path",
+    externalConsole = true
+  }
+}
+
 dap.adapters.cppvsdbg = {
 	id='cppvsdbg',
 	type='executable',

@@ -52,6 +52,7 @@ vim.cmd ":set nofixendofline"
 vim.cmd":silent! colorscheme vim"
 
 vim.g.loaded_python3_provider=0
+vim.cmd':hi PMenu guibg=none'
 
 -- require('local_utils.intro')
 
