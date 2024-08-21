@@ -27,23 +27,17 @@ require("packer").startup(
 		use {'glepnir/lspsaga.nvim', commit="4e2b91c0db5654d625c4b4068d3e206c8535783c"}
 		use 'lewis6991/gitsigns.nvim'
 		use 'habamax/vim-godot'
-		-- use 'preservim/nerdtree'
 --		use 'noib3/nvim-cokeline'
 		use 'mfussenegger/nvim-dap'
 		use "rcarriga/nvim-dap-ui"
-		-- use 'nvim-telescope/telescope-dap.nvim'
-		-- use 'EdenEast/nightfox.nvim'
 		use 'windwp/nvim-autopairs'
 		use 'dinhhuy258/git.nvim'
 		use 'stevearc/dressing.nvim'
     use 'gpanders/editorconfig.nvim'
     use 'kchmck/vim-coffee-script'
     use 'akinsho/git-conflict.nvim'
-    -- use 'Mofiqul/vscode.nvim'
     use 'numToStr/Comment.nvim'
---    use 'xiyaowong/nvim-transparent'
     use "sindrets/diffview.nvim"
-    -- use "tanvirtin/vgit.nvim"
     -- use "rebelot/kanagawa.nvim"
 	end
 )

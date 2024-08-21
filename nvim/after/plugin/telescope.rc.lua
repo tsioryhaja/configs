@@ -23,11 +23,11 @@ telescope.setup {
 	defaults = {
 		mappings = {
       i = {
-        ["<C-p>"] = layout_actions.toggle_preview,
+        ["<A-p>"] = layout_actions.toggle_preview,
       },
 			n = {
 				["q"] = actions.close,
-        ["<C-p>"] = layout_actions.toggle_preview,
+        ["<A-p>"] = layout_actions.toggle_preview,
         [";r"] = function (prompt_bufnr)
           local cwd = action_state.get_current_picker(prompt_bufnr).cwd
           local selection = action_state.get_selected_entry()

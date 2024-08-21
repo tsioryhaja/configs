@@ -420,10 +420,67 @@ dapui.setup(
         run_last = "",
         terminate = "",
       }
+    },
+    layouts = {
+      {
+        elements = {
+          {
+            id = "scopes",
+            size = 0.25
+          },
+          {
+            id = "breakpoints",
+            size = 0.25
+          },
+          {
+            id = "stacks",
+            size = 0.25
+          },
+          {
+            id = "watches",
+            size = 0.25
+          }
+        },
+        position = "right",
+        size = 40
+      },
+      {
+        elements = {
+          -- {
+          --   id = "console",
+          --   size = 1
+          -- },
+          {
+            id = "repl",
+            size = 1
+          },
+        },
+        position = "bottom",
+        size = 20
+      },
+      -- {
+      --   elements = {
+      --     {
+      --       id = "console",
+      --       size = 1
+      --     },
+      --   },
+      --   position = "bottom",
+      --   size = 20
+      -- }
     }
   }
 )
 
 vim.keymap.set('n', ';dui', function()
 	dapui.toggle()
+end)
+
+vim.keymap.set('n', ';drt', function()
+  -- dapui.float_element('repl')
+	dapui.toggle({layout= 2})
+end)
+
+vim.keymap.set('n', ';drf', function ()
+  dapui.float_element('console')
 end)
