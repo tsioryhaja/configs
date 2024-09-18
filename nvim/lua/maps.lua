@@ -58,7 +58,7 @@ local function save_current_tabs()
 end
 
 vim.api.nvim_create_user_command('SaveAllCurrent', save_current_tabs, {})
-vim.keymap.set('n', ';ecr', ExecuteCommand)
+vim.keymap.set('n', '<leader>ecr', ExecuteCommand)
 vim.keymap.set('n', '<A-,>', ':horizontal resize -5<CR>')
 vim.keymap.set('n', '<A-.>', ':horizontal resize +5<CR>')
 vim.keymap.set('n', '<A-n>', ':vertical resize -5<CR>')

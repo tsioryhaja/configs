@@ -15,16 +15,16 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true }
 
 	-- buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', ';gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', '<leader>gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap('n', 'gv', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
   -- to go back from the ;gd use ctrl + o
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
-	buf_set_keymap('n', ';ge', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	buf_set_keymap('n', '<leader>ge', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
 	buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 
-  buf_set_keymap('n', ';bf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
+  buf_set_keymap('n', '<leader>bf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 load_config = function()

@@ -107,7 +107,7 @@ telescope.setup {
 telescope.load_extension("file_browser")
 -- telescope.load_extension("dap")
 
-vim.keymap.set('n', ';f',
+vim.keymap.set('n', '<leader>f',
 function()
   -- local workspace = GetWorkspace()
   -- local workspace_folders = {}
@@ -124,17 +124,17 @@ function()
     }
 	})
 end)
-vim.keymap.set('n', ';b', ':buffers t<CR>')
+vim.keymap.set('n', '<leader>b', ':buffers t<CR>')
 vim.keymap.set('n', '<C-a>', function ()
   builtin.buffers({sort_mru = true})
 end)
-vim.keymap.set('n', ';ch', builtin.command_history)
-vim.keymap.set('n', ';cl', builtin.commands)
-vim.keymap.set('n', ';cbff', builtin.current_buffer_fuzzy_find)
-vim.keymap.set('n', ';cbt', builtin.current_buffer_tags)
+vim.keymap.set('n', '<leader>ch', builtin.command_history)
+vim.keymap.set('n', '<leader>cl', builtin.commands)
+vim.keymap.set('n', '<leader>cbff', builtin.current_buffer_fuzzy_find)
+vim.keymap.set('n', '<leader>cbt', builtin.current_buffer_tags)
 
 
-vim.keymap.set('n', ';r', function()
+vim.keymap.set('n', '<leader>r', function()
   local workspace = GetWorkspace()
   local workspace_folders = {}
   for _, val in pairs(workspace.map) do
@@ -147,25 +147,25 @@ end)
 vim.keymap.set('n', '\\\\', function()
 	builtin.buffers()
 end)
-vim.keymap.set('n', ';t', function()
+vim.keymap.set('n', '<leader>t', function()
 	builtin.help_tags()
 end)
-vim.keymap.set('n', ';;', function()
+vim.keymap.set('n', '<leader>;', function()
 	builtin.resume()
 end)
-vim.keymap.set('n', ';e', function()
+vim.keymap.set('n', '<leader>e', function()
 	builtin.diagnostics()
 end)
 vim.keymap.set('n', 'sf', '<Cmd>Telescope file_browser path=%:p:h<CR>')
 vim.keymap.set('n', 'gs', '<Cmd>Telescope grep_string<CR>')
-vim.keymap.set('n', ';ss', builtin.lsp_workspace_symbols)
-vim.keymap.set('n', ';sd', builtin.lsp_document_symbols)
--- vim.keymap.set('n', ';wss', function()
+vim.keymap.set('n', '<leader>ss', builtin.lsp_workspace_symbols)
+vim.keymap.set('n', '<leader>sd', builtin.lsp_document_symbols)
+-- vim.keymap.set('n', '<leader>wss', function()
 --   vim.ui.input({prompt = 'Symbol'}, function(input)
 --     builtin.lsp_workspace_symbols({query = input})
 --   end)
 -- end)
-vim.keymap.set('n', ';wss', builtin.lsp_dynamic_workspace_symbols)
+vim.keymap.set('n', '<leader>wss', builtin.lsp_dynamic_workspace_symbols)
 vim.keymap.set("n", "<A-f>", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
@@ -205,7 +205,7 @@ local function searchFileSpecificFolderSelect()
   end)
 end
 
-vim.keymap.set('n', ';wf', function()
+vim.keymap.set('n', '<leader>wf', function()
   searchFileSpecificFolderSelect()
 end)
 

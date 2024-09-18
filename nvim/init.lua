@@ -31,6 +31,8 @@ vim.cmd':nmap <silent> <C-x> :execute " normal! `".toupper(nr2char(getchar()))."
 --   vim.cmd':set undofile'
 -- end
 
+vim.g.mapleader = " "
+
 vim.keymap.set('n', '<A-^>', function ()
   if vim.o.laststatus == 2 then
     vim.o.laststatus = 1
@@ -38,7 +40,7 @@ vim.keymap.set('n', '<A-^>', function ()
     vim.o.laststatus = 2
   end
 end)
-vim.keymap.set('n', ';it', '<CMD>set list!<CR>')
+vim.keymap.set('n', '<leader>it', '<CMD>set list!<CR>')
 vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
 vim.keymap.set('n', '<A-i>', '<CMD>bprev<CR>')
 

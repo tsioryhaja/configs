@@ -315,7 +315,7 @@ vim.keymap.set('n', '<F5>', function()
 	require('dap').continue()
 end)
 
-vim.keymap.set('n', ';ds', function()
+vim.keymap.set('n', '<leader>ds', function()
 	require('dap').continue()
 end)
 
@@ -327,7 +327,7 @@ vim.keymap.set('n', '<F9>', function()
 	require('dap').toggle_breakpoint()
 end)
 
-vim.keymap.set('n', ';db', function()
+vim.keymap.set('n', '<leader>db', function()
 	require('dap').toggle_breakpoint()
 end)
 
@@ -347,11 +347,11 @@ vim.keymap.set('n', 'drc', function()
 	require('dap').repl.close()
 end)
 
-vim.keymap.set('n', ';dt', function()
+vim.keymap.set('n', '<leader>dt', function()
 	require('dap').terminate()
 end)
 
-vim.keymap.set('n', ';duf', function()
+vim.keymap.set('n', '<leader>duf', function()
 	local widgets = require'dap.ui.widgets'
 	widgets.centered_float(widgets.scopes)
 end)
@@ -364,7 +364,7 @@ local function setConditionalBreakPoint()
 	end)
 end
 
-vim.keymap.set('n', ';dcb',function()
+vim.keymap.set('n', '<leader>dcb',function()
 	setConditionalBreakPoint()
 end)
 
@@ -472,15 +472,15 @@ dapui.setup(
   }
 )
 
-vim.keymap.set('n', ';dui', function()
+vim.keymap.set('n', '<leader>dui', function()
 	dapui.toggle()
 end)
 
-vim.keymap.set('n', ';drt', function()
+vim.keymap.set('n', '<leader>drt', function()
   -- dapui.float_element('repl')
 	dapui.toggle({layout= 2})
 end)
 
-vim.keymap.set('n', ';drf', function ()
+vim.keymap.set('n', '<leader>drf', function ()
   dapui.float_element('console')
 end)
