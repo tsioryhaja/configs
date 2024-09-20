@@ -28,7 +28,7 @@ telescope.setup {
 			n = {
 				["q"] = actions.close,
         ["<A-p>"] = layout_actions.toggle_preview,
-        [";r"] = function (prompt_bufnr)
+        ["<leader>r"] = function (prompt_bufnr)
           local cwd = action_state.get_current_picker(prompt_bufnr).cwd
           local selection = action_state.get_selected_entry()
           if selection == nil then

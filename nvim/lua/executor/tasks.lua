@@ -21,7 +21,7 @@ local function create_cmd_window()
     silent = true,
     expr = false
   }
-  vim.api.nvim_buf_set_keymap(0, "n", ";q", "<CMD>lua require('executor.tasks').close()<CR>", options)
+  vim.api.nvim_buf_set_keymap(0, "n", "<leader>q", "<CMD>lua require('executor.tasks').close()<CR>", options)
 end
 
 function M.close()

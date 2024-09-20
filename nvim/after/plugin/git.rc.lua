@@ -9,11 +9,11 @@ if (not status) then return end
 git.setup({
   winbar = true,
 	keymaps = {
-		blame = ";gb",
+		blame = "<leader>gb",
 		quit_blame = "q",
-		browse=";go",
+		browse="<leader>go",
 		blame_commit="<CR>",
-		diff=";gd",
+		diff="<leader>gd",
 	}
 })
 
