@@ -27,6 +27,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'puremourning/vimspector'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -127,17 +128,19 @@ let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']
 set relativenumber
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat --color=always {}']}, <bang>1)
-let g:display_virtual_text_diag = 1
+let g:display_virtual_text_diag = 0
 
-function! Lsp_toggle_virtual_text()
-  if g:display_virtual_text_diag 
-    let g:display_virtual_text_diag = 0
-    call lsp#internal#diagnostics#virtual_text#_disable()
-  else
-    let g:display_virtual_text_diag = 1
-    call lsp#internal#diagnostics#virtual_text#_enable()
-  endif
-endfunction
+let g:lsp_diagnostics_signs_enabled = 1
+
+" function! Lsp_toggle_virtual_text()
+"   if g:display_virtual_text_diag 
+"     let g:display_virtual_text_diag = 0
+"     call lsp#internal#diagnostics#virtual_text#_disable()
+"   else
+"     let g:display_virtual_text_diag = 1
+"     call lsp#internal#diagnostics#virtual_text#_enable()
+"   endif
+" endfunction
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -153,7 +156,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    nmap <silent> gld <CR>:call Lsp_toggle_virtual_text()<CR>
+    " nmap <silent> gld <CR>:call Lsp_toggle_virtual_text()<CR>
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
@@ -171,3 +174,6 @@ augroup END
 
 let &t_SI="\e[6 q"
 let &t_EI="\e[2 q"
+
+let g:display_virtual_text_diag = 0
+let g:lsp_diagnostics_float_cursor = 1
