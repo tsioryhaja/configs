@@ -89,10 +89,12 @@ nmap <buffer> gi <plug>(lsp-implementation)
 nmap <buffer> gt <plug>(lsp-type-definition)
 
 nmap ;f :Files<CR>
+nmap <Space>f :CtrlP<CR>
+nmap <C-a> :CtrlPBuffer<CR>
 " nnoremap ;f <scriptcmd>fuzzy.File()<cr>
 
-nmap <A-h> :tabprev<CR>
-nmap <A-l> :tabnext<CR>
+" nmap <A-h> :tabprev<CR>
+" nmap <A-l> :tabnext<CR>
 
 nmap <C-n> :set rnu!<CR>
 
@@ -170,6 +172,7 @@ augroup lsp_install
     au!
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+		autocmd User lsp_buffer_enabled call lsp#internal#diagnostics#virtual_text#_disable()
 augroup END
 
 let &t_SI="\e[6 q"
