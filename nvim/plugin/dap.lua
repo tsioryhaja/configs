@@ -64,7 +64,12 @@ dap.configurations.python = {
 		type = 'python',
 		name = 'Run current file',
 		request = 'launch',
-		program = '${file}'
+		program = '${file}',
+		cwd = '${workspaceFolder}',
+    autoReload = {
+      enable = true,
+      pollingInterval = 1
+    }
 	},
 	{
 		type = 'python';

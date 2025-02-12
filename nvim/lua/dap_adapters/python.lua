@@ -34,13 +34,13 @@ local function table_contains(_table, _value)
 end
 
 function DebugpySocketsHandler(session, body)
-  -- print(session.config.program)
+  -- print(vim.json.encode(session))
   -- print(vim.json.encode(body))
   local sockets = body.sockets
   if #sockets > 0 then
     local port = 0
     for _, value in pairs(sockets) do
-      if value.port > port and value.internal == false then
+      if value.port > port and value.internal == true then
         -- print(vim.json.encode(value))
         port = value.port
       end
@@ -48,6 +48,7 @@ function DebugpySocketsHandler(session, body)
     if not session.debugpy_connected_ports then
       session.debugpy_connected_ports = {}
     end
+    -- print(port)
     if port > 0 and not table_contains(session.debugpy_connected_ports, port) then
       local launcher_location = PathJoin({UserHome, ".vscode", "extensions", "ms-python.debugpy-2024.6.0-win32-x64", "bundled", "libs", "debugpy", "launcher"})
       local opts = {
@@ -56,6 +57,7 @@ function DebugpySocketsHandler(session, body)
         -- "debugpy.launcher",
         tostring(port),
         "--",
+        session.config.program,
       }
       -- local newargs = getParams(session.config)
       -- for _, v in pairs(newargs) do
