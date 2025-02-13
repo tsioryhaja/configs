@@ -59,10 +59,30 @@ dap.adapters.python_remote = {
 	request = 'attach'
 }
 
+dap.adapters.debugpy = {
+  type = 'executable',
+  command = 'python',
+  args = {'C:\\Users\\tsior\\.vscode\\extensions\\ms-python.debugpy-2025.0.1-win32-x64\\bundled\\libs\\debugpy\\adapter'},
+  options = {
+    source_filetype = 'python'
+  }
+}
+
 dap.configurations.python = {
 	{
 		type = 'python',
 		name = 'Run current file',
+		request = 'launch',
+		program = '${file}',
+		cwd = '${workspaceFolder}',
+    autoReload = {
+      enable = true,
+      pollingInterval = 1
+    }
+	},
+	{
+		type = 'debugpy',
+		name = 'Run current file debug py',
 		request = 'launch',
 		program = '${file}',
 		cwd = '${workspaceFolder}',
