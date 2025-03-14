@@ -28,7 +28,8 @@ require("packer").startup(
 		use 'lewis6991/gitsigns.nvim'
 		use 'habamax/vim-godot'
 --		use 'noib3/nvim-cokeline'
-		use 'mfussenegger/nvim-dap'
+		use {'mfussenegger/nvim-dap', commit="f0dca670fa059eb89dda8869a6310c804241345c"}
+		-- use 'mfussenegger/nvim-dap-python'
 		use "rcarriga/nvim-dap-ui"
 		use 'windwp/nvim-autopairs'
 		use 'dinhhuy258/git.nvim'
