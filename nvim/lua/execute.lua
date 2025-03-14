@@ -1,6 +1,6 @@
 function SetEnvVariable(name, value)
+  value = string.gsub(value, '"', '\\"')
 	value = '"'..value..'"'
-  value = value.gsub('"', '\\n')
 	vim.cmd(":let $"..name.."="..value)
 end
 

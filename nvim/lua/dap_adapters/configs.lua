@@ -24,6 +24,6 @@ function GetConfigs(dap)
 		dap.adapters[adapter_name] = adapter
 		configuration.type = adapter_name
 		configuration.name = name
-		table.insert(dap.configurations[config.language], configuration)
+		table.insert(dap.configurations[config.language], 1, configuration)
 	end
 end

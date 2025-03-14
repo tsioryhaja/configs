@@ -12,6 +12,8 @@ require('dap_adapters.python')
 
 require('dap_adapters.configs')
 
+require('dap_adapters.server_executable')
+
 dap.listeners.before['event_debugpySockets'] = {DebugpySocketsHandler}
 
 local home_folder = vim.env.HOME
@@ -62,7 +64,7 @@ dap.adapters.python_remote = {
 dap.adapters.debugpy = {
   type = 'executable',
   command = 'python',
-  args = {'C:\\Users\\tsior\\.vscode\\extensions\\ms-python.debugpy-2025.0.1-win32-x64\\bundled\\libs\\debugpy\\adapter'},
+  args = {'C:\\Users\\tsiory_re\\.vscode\\extensions\\ms-python.debugpy-2025.0.1-win32-x64\\bundled\\libs\\debugpy\\adapter'},
   options = {
     source_filetype = 'python'
   }
@@ -335,17 +337,29 @@ dap.configurations.cpp = {
 
 GetConfigs(dap)
 
+local function debug_run()
+	require('dap').continue({
+    before = function (config)
+      if config.server_executable then
+        SpawnServerExecutable(config.server_executable)
+        config = vim.deepcopyc(config)
+        config['server_executable'] = nil
+      end
+      return config
+    end
+  })
+end
 
 vim.keymap.set('n', '<F5>', function()
-	require('dap').continue()
+  debug_run()
 end)
 
 vim.keymap.set('n', '<leader>ds', function()
-	require('dap').continue()
+  debug_run()
 end)
 
 vim.api.nvim_create_user_command("DapRun", function ()
-	require('dap').continue()
+  debug_run()
 end, {})
 
 vim.keymap.set('n', '<F9>', function()
@@ -374,6 +388,7 @@ end)
 
 vim.keymap.set('n', '<leader>dt', function()
 	require('dap').terminate()
+  KillServerExecutable()
 end)
 
 vim.keymap.set('n', '<leader>duf', function()
