@@ -43,6 +43,12 @@ end)
 vim.keymap.set('n', '<leader>it', '<CMD>set list!<CR>')
 vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
 vim.keymap.set('n', '<A-i>', '<CMD>bprev<CR>')
+vim.api.nvim_create_user_command("SetOfEnv",
+function (opts)
+  print(opts.fargs[1])
+  LoadSetOfEnv(opts.fargs[1])
+end,
+{ nargs = 1 })
 
 require("plugins")
 require("maps")

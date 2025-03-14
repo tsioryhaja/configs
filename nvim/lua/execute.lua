@@ -1,5 +1,6 @@
 function SetEnvVariable(name, value)
 	value = '"'..value..'"'
+  value = value.gsub('"', '\\n')
 	vim.cmd(":let $"..name.."="..value)
 end
 
@@ -20,3 +21,9 @@ function SetEnvs()
 	end
 end
 
+function LoadSetOfEnv(name)
+  local envs = GetConfig(name..'envs')
+	for k, v in pairs(envs) do
+		SetEnvVariable(k, v)
+	end
+end
