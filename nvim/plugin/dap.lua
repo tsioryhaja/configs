@@ -340,10 +340,26 @@ GetConfigs(dap)
 local function debug_run()
 	require('dap').continue({
     before = function (config)
+      -- print(vim.json.encode(config))
       if config.server_executable then
+        adapter = config.type
+        local port = GetFreePort()
+        dap.adapters[config.type].port = port
+        config = vim.deepcopy(config)
+        config.server_executable.command = string.gsub(config.server_executable.command, '${port}', port)
+        new_args = {}
+        for _, v in ipairs(config.server_executable.args) do
+          v = string.gsub(v,  '${port}', port)
+          table.insert(new_args, v)
+        end
+        config.server_executable.args = new_args
         SpawnServerExecutable(config.server_executable)
-        config = vim.deepcopyc(config)
         config['server_executable'] = nil
+        config.connect = {
+          port = port,
+          host = '127.0.0.1'
+        }
+        -- config.type = adapter
       end
       return config
     end
@@ -355,6 +371,7 @@ vim.keymap.set('n', '<F5>', function()
 end)
 
 vim.keymap.set('n', '<leader>ds', function()
+  -- require('dap').continue()
   debug_run()
 end)
 

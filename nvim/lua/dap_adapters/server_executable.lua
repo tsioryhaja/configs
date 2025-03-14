@@ -2,6 +2,16 @@ local uv = vim.loop
 local log = require('dap.log').create_logger('local-dap.log')
 local utils = require('dap.utils')
 local server_executable = nil
+local repl = require('dap.repl')
+
+function GetFreePort()
+  local tcp = assert(uv.new_tcp(), "Must be able to create tcp client")
+  tcp:bind('127.0.0.1', 0)
+  local port = tcp:getsockname().port
+  tcp:shutdown()
+  tcp:close()
+  return port
+end
 
 function KillServerExecutable()
   if server_executable then
@@ -18,6 +28,7 @@ function SpawnServerExecutable(executable)
   log.debug("Starting debug adapter server executable", executable)
   local stdout = assert(uv.new_pipe(false), "Must be able to create pipe")
   local stderr = assert(uv.new_pipe(false), "Must be able to create pipe")
+  print(vim.json.encode(executable.env))
   local opts = {
     stdio = {nil, stdout, stderr},
     args = executable.args or {},
@@ -45,7 +56,9 @@ function SpawnServerExecutable(executable)
       assert(not err, err)
       if chunk then
         vim.schedule(function()
-          repl.append('[debug-adapter ' .. stream .. '] ' .. chunk)
+          if repl then
+            repl.append('[debug-adapter ' .. stream .. '] ' .. chunk)
+          end
         end)
       else
         pipe:close()
