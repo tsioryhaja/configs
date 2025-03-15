@@ -337,29 +337,15 @@ dap.configurations.cpp = {
 
 GetConfigs(dap)
 
-local function debug_run()
-	require('dap').continue({
+local function debug_with_env()
+  require('dap').continue({
     before = function (config)
-      -- print(vim.json.encode(config))
-      if config.server_executable then
-        adapter = config.type
-        local port = GetFreePort()
-        dap.adapters[config.type].port = port
+      if config.env then
         config = vim.deepcopy(config)
-        config.server_executable.command = string.gsub(config.server_executable.command, '${port}', port)
-        new_args = {}
-        for _, v in ipairs(config.server_executable.args) do
-          v = string.gsub(v,  '${port}', port)
-          table.insert(new_args, v)
+        for k, v in pairs(config.env) do
+          SetEnvVariable(k, v)
         end
-        config.server_executable.args = new_args
-        SpawnServerExecutable(config.server_executable)
-        config['server_executable'] = nil
-        config.connect = {
-          port = port,
-          host = '127.0.0.1'
-        }
-        -- config.type = adapter
+        config.env = nil
       end
       return config
     end
@@ -367,16 +353,17 @@ local function debug_run()
 end
 
 vim.keymap.set('n', '<F5>', function()
-  debug_run()
+  debug_with_env()
 end)
 
 vim.keymap.set('n', '<leader>ds', function()
   -- require('dap').continue()
-  debug_run()
+  -- debug_run()
+  debug_with_env()
 end)
 
 vim.api.nvim_create_user_command("DapRun", function ()
-  debug_run()
+  debug_with_env()
 end, {})
 
 vim.keymap.set('n', '<F9>', function()
@@ -405,7 +392,6 @@ end)
 
 vim.keymap.set('n', '<leader>dt', function()
 	require('dap').terminate()
-  KillServerExecutable()
 end)
 
 vim.keymap.set('n', '<leader>duf', function()
@@ -541,3 +527,15 @@ end)
 vim.keymap.set('n', '<leader>drf', function ()
   dapui.float_element('console')
 end)
+
+local original_create_logger = require('dap.log').create_logger
+
+local function new_create_logger(filename)
+  if string.find(filename, 'custom_adapter') then
+    return MakeReplLogger()
+  else
+    return original_create_logger(filename)
+  end
+end
+
+require('dap.log').create_logger = new_create_logger
