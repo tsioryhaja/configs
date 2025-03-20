@@ -64,7 +64,8 @@ dap.adapters.python_remote = {
 dap.adapters.debugpy = {
   type = 'executable',
   command = 'python',
-  args = {'C:\\Users\\tsiory_re\\.vscode\\extensions\\ms-python.debugpy-2025.0.1-win32-x64\\bundled\\libs\\debugpy\\adapter'},
+  -- args = {'C:\\Users\\tsiory_re.THIZY\\.vscode\\extensions\\ms-python.debugpy-2025.4.1-win32-x64\\bundled\\libs\\debugpy\\adapter'},
+  args = {PathJoin({UserHome, '.tools', 'debugpy', 'bundled', 'libs', 'debugpy', 'adapter'})},
   options = {
     source_filetype = 'python'
   }

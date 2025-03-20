@@ -50,7 +50,7 @@ function DebugpySocketsHandler(session, body)
     end
     -- print(port)
     if port > 0 and not table_contains(session.debugpy_connected_ports, port) then
-      local launcher_location = PathJoin({UserHome, ".vscode", "extensions", "ms-python.debugpy-2024.6.0-win32-x64", "bundled", "libs", "debugpy", "launcher"})
+      local launcher_location = PathJoin({UserHome, ".tools", "debugpy", "bundled", "libs", "debugpy", "launcher"})
       local opts = {
         launcher_location,
         -- "-m",
