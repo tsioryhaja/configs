@@ -15,15 +15,17 @@ function GetConfigs(dap)
 	end
 	for i, config in ipairs(configs) do
 		local adapter = config.adapter
-		local configuration = config.configuration
-		local name = config.name
-		local adapter_name = 'custom_adapter'..i
-		if not dap.configurations[config.language] then
-			dap.configurations[config.language] = {}
-		end
-		dap.adapters[adapter_name] = adapter
-		configuration.type = adapter_name
-		configuration.name = name
+    local configuration = config.configuration
+    local name = config.name
+    configuration.name = name
+    if not dap.configurations[config.language] then
+      dap.configurations[config.language] = {}
+    end
+    if adapter then
+      local adapter_name = 'custom_adapter'..i
+      dap.adapters[adapter_name] = adapter
+      configuration.type = adapter_name
+    end
 		table.insert(dap.configurations[config.language], 1, configuration)
 	end
 end

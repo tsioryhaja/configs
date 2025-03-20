@@ -2,7 +2,7 @@ require('execute')
 
 local tasks = require("executor.tasks")
 
-vim.keymap.set('n', 'et', function ()
+vim.keymap.set('n', '<leader>et', function ()
   local config = GetConfig('tasks')
   local config_names = {}
   for i, _ in pairs(config) do
