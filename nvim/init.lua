@@ -40,9 +40,23 @@ vim.keymap.set('n', '<A-^>', function ()
     vim.o.laststatus = 2
   end
 end)
+LAST_MARKED = 1
+MARKS_TO_USE = {'J', 'K', 'L', 'H', 'M', 'N'}
+
 vim.keymap.set('n', '<leader>it', '<CMD>set list!<CR>')
 vim.keymap.set('n', '<A-o>', '<CMD>bnext<CR>')
 vim.keymap.set('n', '<A-i>', '<CMD>bprev<CR>')
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+  pattern = {"*"},
+  callback = function (ev)
+    if LAST_MARKED > #MARKS_TO_USE then
+      return
+    end
+    local mark_to_use = MARKS_TO_USE[LAST_MARKED]
+    vim.cmd(':mark '..mark_to_use)
+    LAST_MARKED = LAST_MARKED + 1
+  end
+})
 vim.api.nvim_create_user_command("SetOfEnv",
 function (opts)
   print(opts.fargs[1])

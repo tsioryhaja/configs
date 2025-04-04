@@ -23,15 +23,15 @@ call plug#begin()
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/vim-lsp-settings'
 Plug 'VundleVim/Vundle.vim'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
+" Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'puremourning/vimspector'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-pathogen'
+" Plug 'tpope/vim-pathogen'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf'
@@ -39,14 +39,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'ggreer/the_silver_searcher'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'habamax/vim-godot'
-Plug 'girishji/scope.vim'
+" Plug 'girishji/scope.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'vim-ctrlspace/vim-ctrlspace'
+" Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
+" Plug 'vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -180,3 +181,16 @@ let &t_EI="\e[2 q"
 
 let g:display_virtual_text_diag = 0
 let g:lsp_diagnostics_float_cursor = 1
+
+let g:last_marked = 0
+let g:marks_to_use = ['J', 'K', 'L', 'H', 'M', 'N']
+function MarkForFastUse()
+	if g:last_marked >= len(g:marks_to_use)
+		return
+	endif
+	let l:mark_to_use = g:marks_to_use[g:last_marked]
+	let g:last_marked = g:last_marked + 1
+	execute ':mark '.l:mark_to_use
+endfunction
+
+autocmd BufReadPost * call MarkForFastUse()
