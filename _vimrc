@@ -26,17 +26,17 @@ Plug 'VundleVim/Vundle.vim'
 " Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'puremourning/vimspector'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'tpope/vim-pathogen'
-Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'ggreer/the_silver_searcher'
+" Plug 'ggreer/the_silver_searcher'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'habamax/vim-godot'
 " Plug 'girishji/scope.vim'
@@ -68,16 +68,13 @@ let g:lightline.component = {
 "
 " set pythonhome=C:\\Python310
 " set pythondll=python310.dll
-let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
+" let vimspector_base_dir='C:/Users/tsiory_re/.vim/plugged/vimspector'
 
 " let g:airline_powerline_fonts=1
 " let g:airline#extensions#tabline#enabled=1
 " let g:airline#extensions#tabline#tab_min_count=2
 " let g:airline#extensions#branch#enabled=1
 " let g:airline_theme='purify'
-let g:vimspector_enable_mappings='HUMAN'
-nmap <S-F3> :VimspectorReset<CR>
-nmap <S-F7> :NERDTree<CR>
 " nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
@@ -89,8 +86,8 @@ nmap <buffer> gr <plug>(lsp-references)
 nmap <buffer> gi <plug>(lsp-implementation)
 nmap <buffer> gt <plug>(lsp-type-definition)
 
-nmap ;f :Files<CR>
-nmap <Space>f :CtrlP<CR>
+nmap <Space>f :Files<CR>
+nmap <Space>F :CtrlP<CR>
 nmap <C-a> :CtrlPBuffer<CR>
 " nnoremap ;f <scriptcmd>fuzzy.File()<cr>
 
