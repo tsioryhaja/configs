@@ -42,12 +42,17 @@ Plug 'habamax/vim-godot'
 " Plug 'girishji/scope.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'vim-scripts/vimcompletesme'
+Plug 'vim-scripts/L9'
+Plug 'vim-scripts/FuzzyFinder'
+" Plug 'girishji/vimcomplete'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
-" Plug 'vimdap'
+Plug 'tsioryhaja/vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -87,7 +92,7 @@ nmap <buffer> gi <plug>(lsp-implementation)
 nmap <buffer> gt <plug>(lsp-type-definition)
 
 nmap <Space>f :Files<CR>
-nmap <Space>F :CtrlP<CR>
+nmap <Space>F :FufCoverageFile<CR>
 nmap <C-a> :CtrlPBuffer<CR>
 " nnoremap ;f <scriptcmd>fuzzy.File()<cr>
 
@@ -120,7 +125,7 @@ let g:godot_executable = 'C:/Godot/Godot.exe'
 " imap <silent><expr> <S-Tab> pumvisible() ? "\<up>" : "\<S-Tab>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']
@@ -161,7 +166,7 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
     " refer to doc to add more commands
 endfunction
