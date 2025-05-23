@@ -1,6 +1,11 @@
 set nocompatible
 set hidden
 set guioptions-=e
+
+set backupdir=$HOME/.vim/backup_files//
+set directory=$HOME/.vim/swap_files//
+set undodir=$HOME/.vim/undo_files//
+
 filetype plugin on
 let NERDTreeIgnore = ['\.pyv$']
 " full screen
