@@ -32,7 +32,7 @@ Plug 'VundleVim/Vundle.vim'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'PhilRunninger/nerdtree-buffer-ops'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'puremourning/vimspector'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -47,13 +47,13 @@ Plug 'habamax/vim-godot'
 " Plug 'girishji/scope.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
-Plug 'vim-scripts/vimcompletesme'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'vim-scripts/vimcompletesme'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/FuzzyFinder'
 " Plug 'girishji/vimcomplete'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
@@ -69,6 +69,8 @@ let g:lightline.enable = {
 
 let g:lightline.tab = {
       \ 'active': [ 'filename', 'modified' ] }
+
+let g:asyncomplete_auto_popup = 0
 
 let g:lightline.component = {
 			\ 'filename': '%f' }
@@ -142,20 +144,21 @@ let g:display_virtual_text_diag = 0
 
 let g:lsp_diagnostics_signs_enabled = 1
 
-" function! Lsp_toggle_virtual_text()
-"   if g:display_virtual_text_diag 
-"     let g:display_virtual_text_diag = 0
-"     call lsp#internal#diagnostics#virtual_text#_disable()
-"   else
-"     let g:display_virtual_text_diag = 1
-"     call lsp#internal#diagnostics#virtual_text#_enable()
-"   endif
-" endfunction
+function! Lsp_toggle_virtual_text()
+  if g:display_virtual_text_diag 
+    let g:display_virtual_text_diag = 0
+    call lsp#internal#diagnostics#virtual_text#_disable()
+  else
+    let g:display_virtual_text_diag = 1
+    call lsp#internal#diagnostics#virtual_text#_enable()
+  endif
+endfunction
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+		imap <c-space> <Plug>(asyncomplete_force_refresh)
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> gs <plug>(lsp-document-symbol-search)
     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
@@ -166,7 +169,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    " nmap <silent> gld <CR>:call Lsp_toggle_virtual_text()<CR>
+    nmap <silent> gld <CR>:call Lsp_toggle_virtual_text()<CR>
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
