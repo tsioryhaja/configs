@@ -100,7 +100,8 @@ nmap <buffer> gi <plug>(lsp-implementation)
 nmap <buffer> gt <plug>(lsp-type-definition)
 
 nmap <Space>f :Files<CR>
-nmap <Space>F :FufCoverageFile<CR>
+" nmap <Space>F :FufCoverageFile<CR>
+nmap <Space>F :FufFile<CR>
 nmap <C-a> :CtrlPBuffer<CR>
 " nnoremap ;f <scriptcmd>fuzzy.File()<cr>
 
