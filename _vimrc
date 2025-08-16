@@ -1,6 +1,7 @@
 set nocompatible
 set hidden
 set guioptions-=e
+set belloff=all
 
 set backupdir=$HOME/.vim/backup_files//
 set directory=$HOME/.vim/swap_files//
@@ -58,7 +59,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
-Plug 'tsioryhaja/vimdap'
+Plug 'github/copilot.vim'
+" Plug 'tsioryhaja/vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -141,7 +143,7 @@ let g:fzf_vim.preview_window = ['hidden', 'ctrl-/']
 
 set relativenumber
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat --color=always {}']}, <bang>1)
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat --color=always {}']}, <bang>)
 let g:display_virtual_text_diag = 0
 
 let g:lsp_diagnostics_signs_enabled = 1
@@ -160,7 +162,7 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-		imap <c-space> <Plug>(asyncomplete_force_refresh)
+		imap <c-a> <Plug>(asyncomplete_force_refresh)
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> gs <plug>(lsp-document-symbol-search)
     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
@@ -231,3 +233,9 @@ cnoreabbrev Ack Ack!
 " Maps <leader>/ so we're ready to type the search keyword
 nnoremap <Leader>/ :Ack!<Space>
 " }}}
+let g:copilot_enabled = 0
+
+if has('linux') && !empty($WAYLAND_DISPLAY)
+	xnoremap "+y y:call system("wl-copy", @")<cr>
+	nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"),'<C-v><C-m>', '', 'g')<cr>p
+endif
