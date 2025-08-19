@@ -3,6 +3,8 @@ set hidden
 set guioptions-=e
 set belloff=all
 
+set statusline=\ %f\ %r\ %m%=%y\ \|\ %{&fileencoding?&fileencoding:&encoding}\ \|\ %p%%\ %l:%c\ 
+ 
 set backupdir=$HOME/.vim/backup_files//
 set directory=$HOME/.vim/swap_files//
 set undodir=$HOME/.vim/undo_files//
@@ -47,7 +49,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'habamax/vim-godot'
 " Plug 'girishji/scope.vim'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
 " Plug 'prabirshrestha/async.vim'
 " Plug 'vim-scripts/vimcompletesme'
@@ -60,7 +62,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
 Plug 'github/copilot.vim'
-" Plug 'tsioryhaja/vimdap'
+Plug 'tsioryhaja/vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -239,3 +241,6 @@ if has('linux') && !empty($WAYLAND_DISPLAY)
 	xnoremap "+y y:call system("wl-copy", @")<cr>
 	nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"),'<C-v><C-m>', '', 'g')<cr>p
 endif
+
+
+highlight StatusLine cterm=NONE gui=NONE
