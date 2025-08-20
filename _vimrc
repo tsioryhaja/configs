@@ -249,6 +249,3 @@ function GetGitBranch()
 	return system("git rev-parse --abbrev-ref HEAD")
 endfunction
 
-function PushGitBranch()
-	call system("git push origin ".GetGitBranch())
-endfunction

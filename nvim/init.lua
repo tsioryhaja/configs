@@ -13,10 +13,6 @@ _G.GetGitBranch = function()
   return vim.system({"git", "rev-parse", "--abbrev-ref", "HEAD"}, {text=true}):wait().stdout
 end
 
-_G.PushGitBranch = function()
-  print(vim.system({"git", "push", "origin", GetGitBranch()}, {text=true}):wait().stdout)
-end
-
 _G.PrintGitBranch = function()
   print(GetGitBranch())
 end
