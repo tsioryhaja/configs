@@ -62,7 +62,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
 Plug 'github/copilot.vim'
-Plug 'tsioryhaja/vimdap'
+" Plug 'tsioryhaja/vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -244,3 +244,11 @@ endif
 
 
 highlight StatusLine cterm=NONE gui=NONE
+
+function GetGitBranch()
+	return system("git rev-parse --abbrev-ref HEAD")
+endfunction
+
+function PushGitBranch()
+	call system("git push origin ".GetGitBranch())
+endfunction
