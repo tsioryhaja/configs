@@ -6,12 +6,28 @@ vim.opt.expandtab = true
 vim.opt.termguicolors=true
 vim.opt.cursorline=false
 
+vim.o.statusline = " %f %r %m%=%y | %{&fileencoding?&fileencoding:&encoding} | %p%% %l:%c "
+
+
+_G.GetGitBranch = function()
+  return vim.system({"git", "rev-parse", "--abbrev-ref", "HEAD"}, {text=true}):wait().stdout
+end
+
+_G.PushGitBranch = function()
+  print(vim.system({"git", "push", "origin", GetGitBranch()}, {text=true}):wait().stdout)
+end
+
+_G.PrintGitBranch = function()
+  print(GetGitBranch())
+end
+
 require('theme')
 require('local_utils.configs')
 SetDefaultLocation()
 -- require('tablines')
 
-vim.cmd "filetype on"
+
+vim.cmd"filetype on"
 vim.cmd'au BufNewFile,BufRead Jenkinsfile setf groovy'
 vim.cmd'au BufNewFile,BufRead *.coffee set filetype=coffee'
 vim.cmd':set signcolumn=yes:1'
@@ -76,6 +92,7 @@ vim.cmd":silent! colorscheme vim"
 vim.g.loaded_python3_provider=0
 vim.cmd':hi PMenu guibg=none'
 
+vim.cmd":highlight StatusLine cterm=NONE gui=NONE"
 -- require('local_utils.intro')
 
 -- to duplicate row use :t.<CR>
