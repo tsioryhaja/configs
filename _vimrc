@@ -30,7 +30,7 @@ set laststatus=2
 call plug#begin()
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/vim-lsp-settings'
-Plug 'VundleVim/Vundle.vim'
+" Plug 'VundleVim/Vundle.vim'
 Plug 'mileszs/ack.vim'
 " Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
