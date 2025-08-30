@@ -216,7 +216,7 @@ autocmd BufReadPost * call MarkForFastUse()
 
 " ack.vim --- {{{
 
-" Use ripgrep for searching ⚡️
+" Use ripgrep for searching
 " Options include:
 " --vimgrep -> Needed to parse the rg response properly for ack.vim
 " --type-not sql -> Avoid huge sql file dumps as it slows down the search
@@ -237,11 +237,13 @@ nnoremap <Leader>/ :Ack!<Space>
 " }}}
 let g:copilot_enabled = 0
 
-if has('linux') && !empty($WAYLAND_DISPLAY)
+" if has('linux') && !empty($WAYLAND_DISPLAY)
+if has('linux')
 	xnoremap "+y y:call system("wl-copy", @")<cr>
 	nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"),'<C-v><C-m>', '', 'g')<cr>p
 endif
-
+" vnoremap "+y y:call system("wl-copy", @")<cr>
+" nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"),'<C-v><C-m>', '', 'g')<cr>p
 
 highlight StatusLine cterm=NONE gui=NONE
 
