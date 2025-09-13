@@ -61,8 +61,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
-Plug 'github/copilot.vim'
-" Plug 'tsioryhaja/vimdap'
+" Plug 'github/copilot.vim'
+Plug 'tsioryhaja/vimdap'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -227,7 +227,7 @@ let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
 " let g:ack_autoclose = 1
 
 " Any empty ack search will search for the work the cursor is on
-let g:ack_use_cword_for_empty_search = 1
+let g:ack_use_cword_for_empty_search = 0
 
 " Don't jump to first match
 cnoreabbrev Ack Ack!
@@ -246,6 +246,7 @@ endif
 " nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"),'<C-v><C-m>', '', 'g')<cr>p
 
 highlight StatusLine cterm=NONE gui=NONE
+let g:lsp_document_highlight_enabled = 0
 
 function GetGitBranch()
 	return system("git rev-parse --abbrev-ref HEAD")
