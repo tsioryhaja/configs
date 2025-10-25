@@ -28,41 +28,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set laststatus=2
 
 call plug#begin()
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/vim-lsp-settings'
-" Plug 'VundleVim/Vundle.vim'
 Plug 'mileszs/ack.vim'
-" Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'PhilRunninger/nerdtree-buffer-ops'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'puremourning/vimspector'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'tpope/vim-pathogen'
-" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" Plug 'ggreer/the_silver_searcher'
-" Plug 'rafi/awesome-vim-colorschemes'
 Plug 'habamax/vim-godot'
-" Plug 'girishji/scope.vim'
-" Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/async.vim'
-" Plug 'vim-scripts/vimcompletesme'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/FuzzyFinder'
-" Plug 'girishji/vimcomplete'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'tpope/vim-commentary'
-" Plug 'github/copilot.vim'
 Plug 'tsioryhaja/vimdap'
+" Plug 'junegunn/fzf'
+" Plug 'github/copilot.vim'
 call plug#end()
 let g:lightline = { 'colorscheme': 'wombat', 'background': 'dark' }
 let g:lightline.enable = {
@@ -176,8 +158,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
     nmap <silent> gld <CR>:call Lsp_toggle_virtual_text()<CR>
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
     " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
