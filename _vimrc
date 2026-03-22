@@ -21,6 +21,7 @@ let g:go_highlight_operators=1
 let g:go_highlight_extra_types=1
 let g:go_highlight_build_constraints=1
 let g:go_highlight_generate_tags=1
+let g:lsp_diagnostics_virtual_text_enabled=0
 
 filetype off
 
@@ -233,4 +234,3 @@ let g:lsp_document_highlight_enabled = 0
 function GetGitBranch()
 	return system("git rev-parse --abbrev-ref HEAD")
 endfunction
-
