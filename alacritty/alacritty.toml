@@ -1,3 +1,5 @@
+[general]
+import = ["~/.config/alacritty/themes/themes/gnome_terminal.toml"]
 [window]
 decorations = "none"
 decorations_theme_variant = "Dark"
